@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-6b9bcac2-6cac-4c63-81e7-fa281fd291bb" data-name="uuid-c2b3e5e4-8a88-44e7-b573-516c3b57af1a" xmlns="http://www.w3.org/2000/svg" width="39" height="21" viewBox="0 0 39 21">
+  <defs>
+    <style>
+      .uuid-6468c88c-2102-472e-bb82-3d980dd453fd {
+        fill: none;
+        stroke: #0b011d;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .uuid-6468c88c-2102-472e-bb82-3d980dd453fd, .uuid-66af208e-e0a6-4f49-bca0-1406fb3029b1 {
+        stroke-width: 2px;
+      }
+
+      .uuid-66af208e-e0a6-4f49-bca0-1406fb3029b1 {
+        fill: #b5abcb;
+        stroke: #b5abcb;
+      }
+    </style>
+  </defs>
+  <g id="uuid-e1f378c3-a67c-4e5c-b8c3-aa4caa9ac68a" data-name="uuid-e4330114-26c2-4fc1-9e3e-5d67296ac470">
+    <circle id="uuid-8c7d3bcc-72e0-4e69-bda2-fdd72ae03906" data-name="uuid-95fa0667-b6e1-4ce2-9821-a732af7e3be0" class="uuid-66af208e-e0a6-4f49-bca0-1406fb3029b1" cx="10.5" cy="10.5" r="9.5"/>
+    <polyline id="uuid-bfd91260-a408-4a99-986c-4f6f61e6a6e1" data-name="uuid-2f12d17d-75ce-439b-8cf1-bdc6263ff8f2" class="uuid-6468c88c-2102-472e-bb82-3d980dd453fd" points="6 11.04 9.32 14.76 15.04 7"/>
+  </g>
+</svg>
