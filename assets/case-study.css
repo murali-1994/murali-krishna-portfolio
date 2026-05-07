@@ -1,0 +1,235 @@
+/* --- assets/case-study.css --- */
+
+.case-study-wrapper {
+    --cs-brand-purple: #5e42d6;
+    --cs-text-main: #333333;
+    --cs-text-muted: #666666;
+    --cs-bg-light: #f9f9f9;
+    --cs-border-color: #eeeeee;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: inherit;
+    /* Inherits from your Webflow global styles */
+    color: var(--cs-text-main);
+    line-height: 1.6;
+    padding-top: 40px;
+}
+
+.case-study-wrapper img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+    border-radius: 8px;
+    /* Softens the edges of your mockups */
+}
+
+/* --- Header --- */
+.cs-header {
+    padding: 0 20px 40px 20px;
+}
+
+.cs-breadcrumb {
+    font-size: 0.9rem;
+    color: var(--cs-text-muted);
+    margin-bottom: 10px;
+}
+
+.cs-title {
+    /* Fluid typography: scales dynamically between mobile and desktop */
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.cs-brand-text {
+    color: #b3b3b3;
+}
+
+/* --- Hero Banner --- */
+.cs-hero-banner {
+    background-color: var(--cs-brand-purple);
+    width: 100%;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cs-hero-mockup {
+    max-width: 900px;
+    width: 100%;
+}
+
+/* --- Project Meta Grid --- */
+.cs-project-meta {
+    margin: 40px auto;
+    padding: 0 20px 40px 20px;
+    display: grid;
+    /* Responsive Grid: Stacks to 1 column on mobile, up to 4 on desktop */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    border-bottom: 1px solid var(--cs-border-color);
+}
+
+.cs-meta-label {
+    display: block;
+    color: var(--cs-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.cs-meta-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+}
+
+/* --- Action Links --- */
+.cs-action-links {
+    text-align: center;
+    background-color: var(--cs-bg-light);
+    padding: 30px 20px;
+    margin: 0 20px 60px 20px;
+    border-radius: 8px;
+}
+
+.cs-action-links p {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.cs-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* Allows buttons to wrap on tiny screens */
+}
+
+.cs-badge {
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.cs-badge:hover {
+    transform: translateY(-2px);
+}
+
+/* --- Main Layout --- */
+.cs-content-container {
+    padding: 0 20px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* --- Sidebar --- */
+.cs-sidebar-nav {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 100px;
+    /* Adjust this if your Webflow navbar is taller/shorter */
+    border-left: 2px solid var(--cs-border-color);
+    padding-left: 20px;
+}
+
+.cs-sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cs-sidebar-nav li {
+    margin-bottom: 15px;
+}
+
+.cs-sidebar-nav a {
+    text-decoration: none;
+    color: var(--cs-text-muted);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.cs-sidebar-nav a.active,
+.cs-sidebar-nav a:hover {
+    color: var(--cs-brand-purple);
+    font-weight: 600;
+}
+
+/* --- Content Areas --- */
+.cs-content-sections {
+    flex: 1;
+    min-width: 0;
+}
+
+.cs-content-block {
+    margin-bottom: 60px;
+}
+
+.cs-content-block h2 {
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    color: #000;
+}
+
+.cs-content-block h3 {
+    margin: 30px 0 15px 0;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.cs-content-block p {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.cs-content-block ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.cs-content-block li {
+    margin-bottom: 10px;
+}
+
+.cs-image-break {
+    margin: 60px 0;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 800px) {
+    .cs-content-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* Converts sticky sidebar to a horizontal scrollable/wrapping menu on mobile */
+    .cs-sidebar-nav {
+        position: static;
+        border-left: none;
+        border-bottom: 2px solid var(--cs-border-color);
+        padding-left: 0;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .cs-sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .cs-sidebar-nav li {
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myNILpay Case Study</title>
+    <style>
+        /* --- CSS VARIABLES (Update these with exact Figma values) --- */
+        :root {
+            /* Fonts */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-breadcrumb: 14px;
+            --font-size-h1: 48px;
+            --font-size-read-more: 12px;
+            --font-size-labels: 16px;
+            --font-size-values: 18px;
+            --font-size-availability-title: 20px;
+
+            /* Colors */
+            --color-text-dark: #111111;
+            --color-text-gray: #888888;
+            --color-text-light: #c0c0c0;
+            /* myNILpay light text in title */
+            --color-bg-white: #ffffff;
+            --color-bg-purple: #5c3cbe;
+            /* Hero placeholder color */
+            --color-bg-light-box: #f4f4f5;
+            /* Availability section background */
+            --color-line: #d1d1d1;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #222222;
+            /* Dark background behind the layout */
+            color: var(--color-text-dark);
+            /* padding: 40px; */
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: var(--color-bg-white);
+            padding: 80px 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            font-size: var(--font-size-breadcrumb);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb .line {
+            width: 120px;
+            height: 1px;
+            background-color: var(--color-line);
+            margin-right: 20px;
+        }
+
+        .breadcrumb .current {
+            font-weight: 700;
+            color: var(--color-text-dark);
+        }
+
+        .breadcrumb .separator {
+            margin: 0 8px;
+            color: var(--color-text-gray);
+        }
+
+        .breadcrumb .category {
+            color: var(--color-text-gray);
+            font-weight: 400;
+        }
+
+        /* --- MAIN TITLE --- */
+        .main-title {
+            font-size: var(--font-size-h1);
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .main-title .light-text {
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        /* --- READ MORE BUTTON --- */
+        .read-more {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: none;
+            border: none;
+            font-family: var(--font-family);
+            font-size: var(--font-size-read-more);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            margin-bottom: 50px;
+            color: var(--color-text-dark);
+        }
+
+        .read-more .icon-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #eeeeee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* --- HERO IMAGE PLACEHOLDER --- */
+        .hero-image-section {
+            width: 100%;
+            aspect-ratio: 2.2 / 1;
+            /* Standard ultra-wide ratio for mockups */
+            background-color: var(--color-bg-purple);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            /* If you export the background with grid lines from Figma, apply it here as background-image */
+        }
+
+        /* --- PROJECT DETAILS --- */
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .detail-item .label {
+            color: var(--color-text-gray);
+            font-size: var(--font-size-labels);
+            font-weight: 600;
+        }
+
+        .detail-item .value {
+            color: var(--color-text-dark);
+            font-size: var(--font-size-values);
+            font-weight: 700;
+        }
+
+        /* --- AVAILABILITY SECTION --- */
+        .availability-section {
+            background-color: var(--color-bg-light-box);
+            padding: 40px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .availability-section h3 {
+            font-size: var(--font-size-availability-title);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Placeholder style for the store buttons to match the black badges */
+        .store-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #000;
+            height: 44px;
+        }
+
+        .store-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .case-study-layout {
+            display: flex;
+            align-items: flex-start;
+            /* Important for sticky sidebar */
+            gap: 60px;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        /* --- LEFT SIDEBAR --- */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            /* This keeps the sidebar fixed while the right side scrolls */
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical track (gray line) */
+        .sidebar ul::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e0e0e0;
+            z-index: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            padding-left: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar a:hover {
+            color: var(--color-bg-purple);
+        }
+
+        .sidebar a.active {
+            color: var(--color-bg-purple);
+        }
+
+        /* Active indicator (purple pill) */
+        .sidebar a.active::before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            /* Center over the 2px gray line */
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: var(--color-bg-purple);
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        /* --- RIGHT CONTENT AREA --- */
+        .content-area {
+            flex-grow: 1;
+            max-width: 800px;
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+            /* Prevents the section from scrolling tight against the top edge */
+            scroll-margin-top: 80px;
+        }
+
+        .content-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-text-dark);
+        }
+
+        .content-section p,
+        .content-section li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-text-body);
+            margin-bottom: 16px;
+        }
+
+        .content-section ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+            /* Tighter spacing for list items */
+        }
+
+        /* Image styling */
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            display: block;
+        }
+
+        /* --- GALLERY LAYOUT --- */
+        .gallery {
+            width: 100%;
+            aspect-ratio: 1285 / 686;
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 325fr 451fr 451fr;
+            grid-template-rows: 291fr 362fr;
+            gap: 20px;
+        }
+
+        .card {
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Desktop Layout matching */
+        .item1 {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+        }
+
+        .item2 {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .item3 {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+        }
+
+        .item4 {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+        }
+
+        /* --- TARGET AUDIENCE LAYOUT --- */
+        .target-audience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            /* margin-top: 30px; */
+            /* User's Figma didn't seem to have excessive margin */
+        }
+
+        .audience-card {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .audience-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .audience-img {
+            width: 220px;
+            height: 230px;
+            border-radius: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .audience-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-top: 10px;
+        }
+
+        .audience-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+
+        .audience-info p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555555;
+            margin: 0;
+        }
+
+        .audience-info strong {
+            color: #111111;
+            font-weight: 700;
+        }
+
+        /* --- COMPETITOR TABLE --- */
+        .competitor-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        .competitor-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        .competitor-table th {
+            background-color: #111111;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 16px 24px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            border: 1px solid #111111;
+        }
+
+        .competitor-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333333;
+            vertical-align: middle;
+        }
+
+        .competitor-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .competitor-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .competitor-table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        .competitor-name {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: #111111;
+        }
+
+        .competitor-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            object-fit: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #888;
+            overflow: hidden;
+        }
+
+        .competitor-table a {
+            color: #4a6ee0;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .competitor-table a:hover {
+            color: #2b4cc2;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .case-study-layout {
+                flex-direction: column;
+                gap: 40px;
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                /* Remove sticky on mobile */
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .sidebar li {
+                margin-bottom: 0;
+            }
+
+            .sidebar a {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-bottom: 4px;
+            }
+
+            .sidebar a.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--color-bg-purple);
+            }
+
+            /* Tablet Layout */
+            .audience-card {
+                gap: 20px;
+            }
+
+            .audience-img {
+                width: 200px;
+                height: auto;
+                aspect-ratio: 1;
+            }
+
+            /* Tablet */
+            .gallery {
+                aspect-ratio: auto;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+                grid-auto-rows: 250px;
+                gap: 15px;
+            }
+
+            .item1 {
+                grid-column: 1 / 2;
+                grid-row: 1 / 3;
+            }
+
+            .item2 {
+                grid-column: 2 / 3;
+                grid-row: 1 / 2;
+            }
+
+            .item3 {
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+            }
+
+            .item4 {
+                grid-column: 1 / 3;
+                grid-row: 3 / 4;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .audience-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: left;
+            }
+
+            .audience-img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+
+            .item1,
+            .item2,
+            .item3,
+            .item4 {
+                grid-column: 1 / 2;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="line"></div>
+            <span class="current">Home page</span>
+            <span class="separator">/</span>
+            <span class="category">My Case Study</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="main-title">
+            Welcome To <span class="light-text">Style Makers</span>
+        </h1>
+
+        <!-- Read More -->
+        <button class="read-more">
+            READ MORE
+            <span class="icon-circle">↓</span>
+        </button>
+
+        <!-- Hero Image Placeholder -->
+        <div class="hero-image-section">
+            <img src="assets/style-makers/Frame-1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
+        </div>
+
+
+
+
+        <div class="case-study-layout">
+
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav>
+                    <ul id="nav-links">
+                        <li><a href="#overview" class="active">Overview</a></li>
+                        <li><a href="#problem">Problem</a></li>
+                        <li><a href="#core-insight">Core Insight</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#constraints">Constraints</a></li>
+                        <li><a href="#competitive-analysis">Competitive Analysis</a></li>
+                        <li><a href="#personas">Personas</a></li>
+                        <li><a href="#solution">Solution</a></li>
+                        <li><a href="#design-decisions">Design Decisions</a></li>
+                        <li><a href="#user-flow">User Flow</a></li>
+                        <li><a href="#low-fidelity">Low Fidelity</a></li>
+                        <li><a href="#iterations">Iterations</a></li>
+                        <li><a href="#high-fidelity">High Fidelity</a></li>
+                        <li><a href="#design-system">Design System</a></li>
+                        <li><a href="#prototype">Prototype</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#conclusion">Conclusion</a></li>
+                        <li><a href="#what-i-learned">What I Learned</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content-area">
+
+                <section id="overview" class="content-section">
+                    <h2>Overview</h2>
+                    <p>The goal of my research was to understand the <span style="font-weight: bold;"> needs</span>,
+                        <span style="font-weight: bold;">challenges</span>
+                        , and <span style="font-weight: bold;">
+                            motivations
+                        </span>
+                        of
+                        <span style="font-weight: bold;">
+                            tailors and
+                            boutique
+                            owners.
+                        </span>
+                        Through interviews and observations, I found that many still rely on notebooks
+                        or memory to manage orders, which often <span style="font-weight: bold;">
+                            leads to errors, missed details, and delays.
+                        </span>
+                        Customers
+                        also face <span style="font-weight: bold;"> frustrations</span> with <span>
+                            miscommunication</span>,
+                        <span style="font-weight: bold;"> late deliveries</span>, and reliance on
+                        <span style="font-weight: bold;"> physical collection cards.</span>
+                        These insights helped me identify inefficiencies in their workflow and guided
+                        me to design a solution that balances tradition with modern technology, while staying simple and
+                        intuitive for all users.
+                    </p>
+                </section>
+
+                <section id="problem-statement" class="content-section">
+                    <h2>Problem Statement</h2>
+                    <p>Tailors and boutique owners aim to deliver quality and grow their business, but lack a simple,
+                        digital system that supports their daily workflow, communication, and customer management.</p>
+                    <ul>
+                        <li>Customer data and measurements are often lost or stored in notebooks.</li>
+                        <li>Difficult to retrieve past customer details or order history.</li>
+                        <li>Frequent delays in work completion and delivery.</li>
+                        <li>Miscommunication between owners, tailors, and customers causes confusion.</li>
+                        <li>Customers reply on physical delivery cards if lost, retrieval becomes hard.</li>
+                        <li>Tailors forget specific customer preferences (buttons, patterns, colors).</li>
+                        <li>No clear system to assign, track, or monitor daily work for staff.</li>
+                        <li>When owners are absent, progress slows and orders remain pending.</li>
+                        <li>Customers repeatedly ask for order status due to lack of transparency.</li>
+                        <li>No data or insights on popular trends, styles, or customer demographics.</li>
+                        <li>Manual tracking reduces productivity and increases errors.</li>
+                        <li>The absence of a unified digital tool limits efficiency, customer satisfaction, and growth
+                            potential.& more
+                    </ul>
+                    <div class="gallery">
+
+                        <div class="card item1">
+                            <img src="/assets/style-makers/Gallery/image-1.png" alt="">
+                        </div>
+
+                        <div class="card item2">
+                            <img src="/assets/style-makers/Gallery/image-2.png" alt="">
+                        </div>
+
+                        <div class="card item3">
+                            <img src="/assets/style-makers/Gallery/image-3.png" alt="">
+                        </div>
+
+                        <div class="card item4">
+                            <img src="/assets/style-makers/Gallery/image-4.png" alt="">
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="research" class="content-section">
+                    <h2>Research</h2>
+                    <h6>Methods:</h6>
+                    <ul>
+                        <li>Conducted field visits to tailoring shops</li>
+                        <li>Interviewed tailors, boutique owners, and customers</li>
+                        <li>Collected survey responses from 60+ users</li>
+                    </ul>
+                </section>
+
+                <!-- You can continue adding the rest of your sections following this pattern -->
+                <section id="quantitative-insights" class="content-section">
+                    <h2>Quantitative Insights:</h2>
+                    <ul>
+                        <li>Designed an intuitive fan journey: simple search → select athlete → make payment → receive
+                            digital receipt/art.</li>
+                        <li>Clean, mobile-friendly layout so fans can quickly pay from phone without confusion.</li>
+                        <li>Athlete flow simplified so verification is easy and onboarding isn’t overwhelming.</li>
+                    </ul>
+                    <img class="content-image" src="/assets/style-makers/Frame-2.png" alt="">
+                </section>
+                <section id="qualitative-insights" class="content-section">
+                    <h2>Qualitative Insights:</h2>
+                    <p>To understand real-world challenges, I conducted interviews and on-site observations with tailors
+                        and boutique owners across different locations. The goal was to analyze their daily workflows,
+                        identify pain points, and understand how manual processes impact efficiency and customer
+                        experience.
+                        This research helped uncover how traditional methods, while familiar, create gaps in
+                        communication, tracking, and overall workflow management.</p>
+                    <h5>Key Findings:</h6>
+                        <br>
+                        <ul>
+                            <li>Customer details and order information are often misplaced due to manual record-keeping
+                            </li>
+                            <li>Communication gaps between owners, workers, and customers lead to delays and errors</li>
+                            <li>Manual tracking increases workload and creates confusion in managing multiple orders
+                            </li>
+                            <li>Lack of visibility into order status causes frequent customer follow-ups</li>
+                            <li>Customers experience frustration due to late deliveries and inconsistent updates</li>
+                        </ul>
+                </section>
+                <section id="target-audience" class="content-section">
+                    <h2>Target Audience</h2>
+                    <div class="target-audience-list">
+                        <div class="audience-card">
+                            <img src="assets/style-makers/Target audience/image-1.png" alt="Ganesh Tailor"
+                                class="audience-img">
+                            <div class="audience-info">
+                                <h3>Ganesh Tailor</h3>
+                                <p><strong>Experience:</strong> 30 Years</p>
+                                <p><strong>Location:</strong> Draksharama, Konaseema, Andhra Pradesh</p>
+                                <p><strong>About:</strong> A highly experienced traditional tailor who manages a large
+                                    customer base manually. Faces challenges in tracking customer data, monitoring
+                                    worker tasks, and managing deliveries on time.</p>
+                            </div>
+                        </div>
+
+                        <div class="audience-card">
+                            <img src="assets/style-makers/Target audience/image-2.png" alt="Raji Boutique"
+                                class="audience-img">
+                            <div class="audience-info">
+                                <h3>Raji Boutique</h3>
+                                <p><strong>Experience:</strong> 15 Years</p>
+                                <p><strong>Location:</strong> Attabira, Bargarh, Odisha</p>
+                                <p><strong>About:</strong> A boutique owner specializing in women's wear. Handles
+                                    multiple orders simultaneously and struggles with tracking order status, customer
+                                    preferences, and communicating new updates efficiently.</p>
+                            </div>
+                        </div>
+
+                        <div class="audience-card">
+                            <img src="assets/style-makers/Target audience/image-3.png" alt="Shusma Boutique"
+                                class="audience-img">
+                            <div class="audience-info">
+                                <h3>Shusma Boutique</h3>
+                                <p><strong>Experience:</strong> 07 Years</p>
+                                <p><strong>Location:</strong> Miyapur, Hyderabad, Telangana</p>
+                                <p><strong>About:</strong> A modern boutique that blends traditional tailoring with
+                                    contemporary fashion. Looking for a digital solution to streamline workflow, assign
+                                    tasks to workers, and provide timely updates to customers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="constraints" class="content-section">
+                    <h2>Constraints</h2>
+                    <p style="font-weight: bold;">While designing the solution, several real-world limitations were
+                        considered:</p>
+                    <ul>
+                        <li>Users are not highly familiar with digital tools</li>
+                        <li>Limited access to advanced devices</li>
+                        <li>Resistance to switching from manual systems</li>
+                        <li>Need to maintain familiar workflow</li>
+                    </ul>
+                    <img src="assets/style-makers/Frame-3.png" alt=""
+                        style="width: 100%; height: auto; display: block;">
+
+                </section>
+                <section id="competitive-analysis" class="content-section">
+                    <h2>Competitive Analysis</h2>
+                    <h4>Competitors:</h4>
+                    <div class="competitor-table-wrapper">
+                        <table class="competitor-table">
+                            <thead>
+                                <tr>
+                                    <th>NAMES</th>
+                                    <th>URL</th>
+                                    <th>COMPETITORS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="competitor-name">
+                                            <div class="competitor-logo"><img
+                                                    src="assets/style-makers/Competitors/image-1.png" alt="Atelierware"
+                                                    onerror="this.style.display='none'"></div>
+                                            <span>Atelierware</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="https://app.atelierware.com"
+                                            target="_blank">https://app.atelierware.com</a></td>
+                                    <td>Direct</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="competitor-name">
+                                            <div class="competitor-logo"><img
+                                                    src="assets/style-makers/Competitors/image-2.png" alt="Darziware"
+                                                    onerror="this.style.display='none'"></div>
+                                            <span>Darziware</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="https://darziware.com" target="_blank">https://darziware.com</a></td>
+                                    <td>Indirect</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="competitor-name">
+                                            <div class="competitor-logo"><img
+                                                    src="assets/style-makers/Competitors/image-3.png" alt="ShriStitch"
+                                                    onerror="this.style.display='none'"></div>
+                                            <span>ShriStitch Tailoring Software</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="https://shristitch.com" target="_blank">https://shristitch.com</a></td>
+                                    <td>Indirect</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="competitor-name">
+                                            <div class="competitor-logo"><img
+                                                    src="assets/style-makers/Competitors/image-4.png" alt="Tailobill"
+                                                    onerror="this.style.display='none'"></div>
+                                            <span>Tailobill</span>
+                                        </div>
+                                    </td>
+                                    <td><a href="https://www.tailobill.com/"
+                                            target="_blank">https://www.tailobill.com/</a></td>
+                                    <td>Indirect</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </section>
+
+                <section id="competitive-details" class="content-section">
+                    <h2>Competitive Details: </h2>
+
+                </section>
+
+
+            </main>
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Adjusts when the section is considered "active" in the viewport
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+
+                        // Add active class to the link corresponding to the section in view
+                        const activeId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.sidebar a[href="#${activeId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+
+</html>

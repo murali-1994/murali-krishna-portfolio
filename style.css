@@ -1,0 +1,45 @@
+.frame {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.frame .line {
+    position: relative;
+    width: 366px;
+    height: 1px;
+    object-fit: cover;
+}
+
+.frame .div {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.frame .text-wrapper {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Inter-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 28px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.frame .text-wrapper-2 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Inter-Medium", Helvetica;
+    font-weight: 500;
+    color: #999999;
+    font-size: 28px;
+    letter-spacing: 0;
+    line-height: normal;
+}

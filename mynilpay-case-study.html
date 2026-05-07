@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myNILpay Case Study</title>
+    <style>
+        /* --- CSS VARIABLES (Update these with exact Figma values) --- */
+        :root {
+            /* Fonts */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-breadcrumb: 14px;
+            --font-size-h1: 48px;
+            --font-size-read-more: 12px;
+            --font-size-labels: 16px;
+            --font-size-values: 18px;
+            --font-size-availability-title: 20px;
+
+            /* Colors */
+            --color-text-dark: #111111;
+            --color-text-gray: #888888;
+            --color-text-light: #c0c0c0;
+            /* myNILpay light text in title */
+            --color-bg-white: #ffffff;
+            --color-bg-purple: #5c3cbe;
+            /* Hero placeholder color */
+            --color-bg-light-box: #f4f4f5;
+            /* Availability section background */
+            --color-line: #d1d1d1;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #222222;
+            /* Dark background behind the layout */
+            color: var(--color-text-dark);
+            /* padding: 40px; */
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: var(--color-bg-white);
+            padding: 80px 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            font-size: var(--font-size-breadcrumb);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb .line {
+            width: 120px;
+            height: 1px;
+            background-color: var(--color-line);
+            margin-right: 20px;
+        }
+
+        .breadcrumb .current {
+            font-weight: 700;
+            color: var(--color-text-dark);
+        }
+
+        .breadcrumb .separator {
+            margin: 0 8px;
+            color: var(--color-text-gray);
+        }
+
+        .breadcrumb .category {
+            color: var(--color-text-gray);
+            font-weight: 400;
+        }
+
+        /* --- MAIN TITLE --- */
+        .main-title {
+            font-size: var(--font-size-h1);
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .main-title .light-text {
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        /* --- READ MORE BUTTON --- */
+        .read-more {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: none;
+            border: none;
+            font-family: var(--font-family);
+            font-size: var(--font-size-read-more);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            margin-bottom: 50px;
+            color: var(--color-text-dark);
+        }
+
+        .read-more .icon-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #eeeeee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* --- HERO IMAGE PLACEHOLDER --- */
+        .hero-image-section {
+            width: 100%;
+            aspect-ratio: 2.2 / 1;
+            /* Standard ultra-wide ratio for mockups */
+            background-color: var(--color-bg-purple);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            /* If you export the background with grid lines from Figma, apply it here as background-image */
+        }
+
+        /* --- PROJECT DETAILS --- */
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .detail-item .label {
+            color: var(--color-text-gray);
+            font-size: var(--font-size-labels);
+            font-weight: 600;
+        }
+
+        .detail-item .value {
+            color: var(--color-text-dark);
+            font-size: var(--font-size-values);
+            font-weight: 700;
+        }
+
+        /* --- AVAILABILITY SECTION --- */
+        .availability-section {
+            background-color: var(--color-bg-light-box);
+            padding: 40px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .availability-section h3 {
+            font-size: var(--font-size-availability-title);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Placeholder style for the store buttons to match the black badges */
+        .store-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #000;
+            height: 44px;
+        }
+
+        .store-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .case-study-layout {
+            display: flex;
+            align-items: flex-start;
+            /* Important for sticky sidebar */
+            gap: 60px;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        /* --- LEFT SIDEBAR --- */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            /* This keeps the sidebar fixed while the right side scrolls */
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical track (gray line) */
+        .sidebar ul::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e0e0e0;
+            z-index: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            padding-left: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar a:hover {
+            color: var(--color-bg-purple);
+        }
+
+        .sidebar a.active {
+            color: var(--color-bg-purple);
+        }
+
+        /* Active indicator (purple pill) */
+        .sidebar a.active::before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            /* Center over the 2px gray line */
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: var(--color-bg-purple);
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        /* --- RIGHT CONTENT AREA --- */
+        .content-area {
+            flex-grow: 1;
+            max-width: 800px;
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+            /* Prevents the section from scrolling tight against the top edge */
+            scroll-margin-top: 80px;
+        }
+
+        .content-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-text-dark);
+        }
+
+        .content-section p,
+        .content-section li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-text-body);
+            margin-bottom: 16px;
+        }
+
+        .content-section ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+            /* Tighter spacing for list items */
+        }
+
+        /* Image styling */
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            display: block;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .case-study-layout {
+                flex-direction: column;
+                gap: 40px;
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                /* Remove sticky on mobile */
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .sidebar li {
+                margin-bottom: 0;
+            }
+
+            .sidebar a {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-bottom: 4px;
+            }
+
+            .sidebar a.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--color-bg-purple);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="line"></div>
+            <span class="current">Home page</span>
+            <span class="separator">/</span>
+            <span class="category">My Case Study</span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="main-title">
+            Welcome To <span class="light-text">myNILpay</span>
+        </h1>
+
+        <!-- Read More -->
+        <button class="read-more">
+            READ MORE
+            <span class="icon-circle">↓</span>
+        </button>
+
+        <!-- Hero Image Placeholder -->
+        <div class="hero-image-section">
+            <img src="assets/mynilpay/Frame-1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
+        </div>
+
+        <!-- Project Details -->
+        <div class="project-details">
+            <div class="detail-item">
+                <span class="label">Project Name:</span>
+                <span class="value">myNILpay</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Client:</span>
+                <span class="value">USA (Texas)</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Industry:</span>
+                <span class="value">Fintech + SportsTech</span>
+            </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="availability-section">
+            <h3>myNILpay is available now</h3>
+            <div class="store-buttons">
+                <!-- Website Button -->
+                <a href="#" class="store-btn">
+                    <img src="assets/icons/web-icon.svg" alt="Website Icon" style="width: 30px; height: 30px;" />
+                    Website
+                </a>
+
+                <!-- App Store Button Placeholder -->
+                <a href="#" class="store-btn">
+                    <img src="assets/icons/apple-icon.svg" alt="App Store Icon" style="width: 25px; height: 25px;" />
+                    <span
+                        style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.2;">
+                        <span style="font-size: 10px; font-weight: 400;">Download on the</span>
+                        App Store
+                    </span>
+                </a>
+
+                <!-- Google Play Button Placeholder -->
+                <a href="#" class="store-btn">
+                    <img src="assets/icons/google-play-store-icon.svg" alt="App Store Icon"
+                        style="width: 25px; height: 25px;" />
+                    <span
+                        style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.2;">
+                        <span style="font-size: 10px; font-weight: 400;">GET IT ON</span>
+                        Google Play
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="case-study-layout">
+
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav>
+                    <ul id="nav-links">
+                        <li><a href="#overview" class="active">Overview</a></li>
+                        <li><a href="#project-outcome">Project Outcome</a></li>
+                        <li><a href="#achievements">Achievements</a></li>
+                        <li><a href="#design-success">Design Success</a></li>
+                        <li><a href="#overall-impact">Overall Impact</a></li>
+                        <li><a href="#design-system">Design System</a></li>
+                        <li><a href="#ui-design">UI Design</a></li>
+                        <li><a href="#my-contribution">My Contribution</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content-area">
+
+                <section id="overview" class="content-section">
+                    <h2>Overview</h2>
+                    <p>myNILpay is a mobile & web platform built to let sports fans directly support college student
+                        athletes by making payments. It's fully NCAA-compliant and designed so athletes (from big
+                        programs or small ones) can receive money safely, and fans get something meaningful in return
+                        (digital art, signed and verified). My job was to design a user experience that was simple,
+                        trustworthy, and inviting for both athletes and fans.</p>
+                </section>
+
+                <section id="project-outcome" class="content-section">
+                    <h2>Project Outcome</h2>
+                    <ul>
+                        <li>Launched core features: fan-to-athlete payments, athlete verification, and digital art
+                            receipts.</li>
+                        <li>Loaded ~500,000 student athletes into the system from all NCAA divisions.</li>
+                        <li>Created a search & discovery flow where fans can easily find athletes by name, sport, or
+                            school.</li>
+                        <li>Built the onboarding flow for athletes to verify identity (.edu, school affiliation) and get
+                            paid.</li>
+                    </ul>
+
+                    <!-- Placeholder for the large laptop image -->
+                    <img src="assets/mynilpay/Frame-2.png" alt="myNILpay Dashboard Mockup" class="content-image">
+                </section>
+
+                <section id="achievements" class="content-section">
+                    <h2>Achievements</h2>
+                    <ul>
+                        <li>Over 450+ student athletes have received real payments shortly after launch.</li>
+                        <li>Got early endorsements & visibility from known names (e.g. Ice Cube, Nancy Lieberman, Andy
+                            Dalton).</li>
+                        <li>Recognized in NIL policy & regulatory discussions at a national/government level.</li>
+                        <li>Users report higher trust and clarity in understanding how payments work.</li>
+                    </ul>
+                </section>
+
+                <!-- You can continue adding the rest of your sections following this pattern -->
+                <section id="design-success" class="content-section">
+                    <h2>Design Success</h2>
+                    <ul>
+                        <li>Designed an intuitive fan journey: simple search → select athlete → make payment → receive
+                            digital receipt/art.</li>
+                        <li>Clean, mobile-friendly layout so fans can quickly pay from phone without confusion.</li>
+                        <li>Athlete flow simplified so verification is easy and onboarding isn’t overwhelming.</li>
+                    </ul>
+                </section>
+                <section id="overall-impact" class="content-section">
+                    <h2>Overall Impact</h2>
+                    <ul>
+                        <li>
+                            <strong>Democratized NIL:</strong> not just star athletes, but every student athlete has a
+                            chance to earn
+                            from
+                            fans.
+                        </li>
+                        <li><strong>Improved fan engagement:</strong> fans feel more connected because they can directly
+                            support athletes
+                            they like.</li>
+                        <li><strong>Built trust:</strong> transparency in payments, legally sound receipts, clean design
+                            all help users
+                            feel safe using the product.</li>
+                        <li><strong>Set a strong foundation for scaling:</strong> design and system built so new
+                            features can be added
+                            without breaking experience.</li>
+                    </ul>
+                    <img src="assets/mynilpay/Frame-3.png" alt="myNILpay Dashboard Mockup" class="content-image">
+
+                </section>
+                <section id="design-system" class="content-section">
+                    <h2>Design system</h2>
+                    <img src="assets/mynilpay/Frame-4.png" alt="myNILpay Dashboard Mockup" class="content-image">
+                    <img src="assets/mynilpay/Frame-5.png" alt="myNILpay Dashboard Mockup" class="content-image">
+
+                </section>
+                <section id="ui-design" class="content-section">
+                    <h2>UI Design</h2>
+                    <p>With a clear mission to support student-athletes, I approached the design phase of myNILpay with
+                        focus and determination, ensuring the product was simple, secure, and NCAA-compliant. Our
+                        primary goal was to create a seamless fan-to-athlete payment experience that built trust while
+                        remaining easy to use. <br>
+                        I started by designing a smooth onboarding process for athletes, using .edu verification to
+                        ensure authenticity and compliance. Next, I focused on simplifying the search and payment flow,
+                        making it easy for fans to find and support any of the 500,000 preloaded athletes. To meet NCAA
+                        requirements, I designed digital art receipts that doubled as both proof of payment and a unique
+                        fan keepsake, ensuring every transaction felt personal and transparent. <br>
+                        As the platform gained traction, over 450 athletes successfully received direct payments, and
+                        the app attracted attention from high-profile supporters like Ice Cube, Andy Dalton, and Nancy
+                        Lieberman. The project also achieved remarkable visibility, being recognized in national NIL
+                        discussions on Capitol Hill within weeks of launch. With the foundations of trust, compliance,
+                        and usability firmly in place, my design work helped democratize NIL, giving both top-tier and
+                        lesser-known athletes the opportunity to earn fairly while empowering fans to directly support
+                        the players they admire.</p>
+                    <img src="assets/mynilpay/Frame-3.png" alt="myNILpay Dashboard Mockup" class="content-image">
+
+                </section>
+                <section id="my-contribution" class="content-section">
+                    <h2>My Contribution</h2>
+                    <ul>
+                        <li>Talked with athletes and fans to learn what they needed and what problems they faced.</li>
+                        <li>Planned how users move through the app from landing → search → payment → receipt.</li>
+                        <li>Created wireframes and prototypes for main flows like athlete signup, fan search, payments,
+                            and receipts.</li>
+                        <li>Worked with the legal team to make sure the design was clear, trustworthy, and
+                            NCAA-compliant.</li>
+                        <li>Improved the design after testing with users making wording simpler, flows smoother, and
+                            trust signals stronger.</li>
+                        <li>Worked closely with developers so the final product matched the design and worked well on
+                            all devices.</li>
+                    </ul>
+                </section>
+                <p style="font-style: italic;">Thank you for reading my case study on myNILpay! This project taught me
+                    how
+                    to balance user needs
+                    with
+                </p>
+
+
+            </main>
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Adjusts when the section is considered "active" in the viewport
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+
+                        // Add active class to the link corresponding to the section in view
+                        const activeId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.sidebar a[href="#${activeId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+
+</html>
