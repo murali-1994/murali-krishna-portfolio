@@ -129,7 +129,7 @@
             width: 100%;
             aspect-ratio: 2.2 / 1;
             /* Standard ultra-wide ratio for mockups */
-            background-color: var(--color-bg-purple);
+            background-color: white;
             margin-bottom: 50px;
             display: flex;
             align-items: center;
@@ -1776,7 +1776,9 @@
         <!-- Breadcrumb -->
         <div class="breadcrumb">
             <div class="line"></div>
-            <span class="current">Home page</span>
+            <a href="#" onclick="history.back(); return false;" style="text-decoration: none;">
+                <span class="current">Home page</span>
+            </a>
             <span class="separator">/</span>
             <span class="category">My Case Study</span>
         </div>
@@ -1794,7 +1796,7 @@
 
         <!-- Hero Image Placeholder -->
         <div class="hero-image-section">
-            <img src="/assets/style-makers/Frame-1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="/assets/style-makers/Frame-1.png" style="width: 100%; height: 100%; object-fit: contain;">
             <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
         </div>
 
