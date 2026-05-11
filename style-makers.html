@@ -1040,6 +1040,731 @@
                 font-size: 16px;
                 line-height: 27px;
             }
+
+            .figma-container {
+                width: 100%;
+                max-width: 1287px;
+                margin: 0 auto;
+                padding: 16px;
+            }
+
+            /* Grid Layout 
+      Mobile First: Defaults to 1 column for strict vertical image stacking 
+    */
+            .figma-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                /* Exactly matches "itemSpacing": 16 from design.json */
+                gap: 16px;
+                grid-auto-rows: minmax(250px, auto);
+            }
+
+            /* Base styling for all image blocks */
+            .grid-item {
+                position: relative;
+                background-color: #f3f4f6;
+                border-radius: 12px;
+                overflow: hidden;
+                min-height: 250px;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            }
+
+            /* Image object-fit ensures images don't stretch or break boundaries */
+            .grid-item img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* =========================================
+       Responsive Breakpoints (Tablet & Desktop) 
+       ========================================= */
+
+            /* Tablet (768px and up) */
+            @media (min-width: 768px) {
+                .figma-container {
+                    padding: 32px;
+                }
+
+                .figma-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .item-hero {
+                    grid-column: span 2;
+                }
+
+                .item-base {
+                    grid-column: span 2;
+                    min-height: 300px;
+                }
+
+                .item-secondary {
+                    min-height: 100%;
+                }
+            }
+
+            /* Desktop (1024px and up) */
+            @media (min-width: 1024px) {
+                .figma-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                .item-base {
+                    grid-column: span 3;
+                }
+            }
+
+            .feature-card {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+                    0 8px 10px -6px rgb(0 0 0 / 0.1);
+            }
+
+            .card-image {
+                transition: transform 0.4s ease;
+            }
+
+            .feature-card:hover .card-image {
+                transform: scale(1.05);
+            }
+
+        }
+
+        .color-swatches-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin: 10px 0;
+        }
+
+
+
+        .color-swatch-box {
+            background-color: #004AAD;
+            width: 250px;
+            height: 100px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Muted gray-blue label */
+        .label {
+            color: #6C7D8C;
+            font-size: 10px;
+        }
+
+        /* Bold hex code */
+        .hex-code {
+            color: #000000;
+            /* font-size: 24px; */
+            font-weight: 600;
+        }
+
+        @media (min-width: 1024px) {
+            .color-swatches-row {
+                flex-direction: row;
+                gap: 10px;
+            }
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .main-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .main-title span {
+            font-family: monospace;
+            /* Matches the "1.INTER" typewriter style */
+            font-weight: 400;
+            font-size: 14px;
+            margin-left: 12px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        /* --- Character Set Display --- */
+        .charset {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* --- Font Weights & Sizes Rows --- */
+        .weight-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Specific row sizing */
+        .size-48 {
+            font-size: 48px;
+        }
+
+        .size-32 {
+            font-size: 32px;
+        }
+
+        .size-24 {
+            font-size: 24px;
+        }
+
+        .size-18 {
+            font-size: 18px;
+        }
+
+        .size-16 {
+            font-size: 16px;
+        }
+
+        .size-14 {
+            font-size: 14px;
+        }
+
+        .size-12 {
+            font-size: 12px;
+        }
+
+        /* Label formatting (e.g., "48px") */
+        .size-label {
+            font-weight: 700;
+            margin-right: 10px;
+            min-width: 60px;
+            /* Aligns the samples nicely */
+        }
+
+        /* Weight classes */
+        .w-bold {
+            font-weight: 700;
+        }
+
+        .w-semibold {
+            font-weight: 600;
+        }
+
+        .w-medium {
+            font-weight: 500;
+        }
+
+        .w-regular {
+            font-weight: 400;
+        }
+
+        .w-light {
+            font-weight: 300;
+        }
+
+        /* Lighter weights are slightly dimmed to match the visual contrast of the original specimen */
+        .w-extralight {
+            font-weight: 200;
+            color: #555555;
+        }
+
+        .w-thin {
+            font-weight: 100;
+            color: #888888;
+        }
+
+        .img-box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: block;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            /* Forces images to fill boxes perfectly without distortion */
+            border-radius: 2px;
+            /* Subtle clean edges */
+        }
+
+        /* ========================================================= */
+        /* MOBILE FIRST LAYOUT (Fluid Stack)                        */
+        /* ========================================================= */
+        .master-gallery-frame {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+        }
+
+        .gallery-main-column,
+        .gallery-sidebar-column,
+        .gallery-row {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+        }
+
+        /* Base minimum height so images don't collapse on mobile */
+        .img-box {
+            min-height: 220px;
+        }
+
+        /* ========================================================= */
+        /* TABLET VIEW (Intermediate Grid)                          */
+        /* ========================================================= */
+        @media (min-width: 768px) {
+            .gallery-row {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-sidebar-column {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .img-box {
+                min-height: 180px;
+            }
+        }
+
+        /* ========================================================= */
+        /* DESKTOP VIEW (Pixel-Perfect Figma Data Match)            */
+        /* ========================================================= */
+        @media (min-width: 1200px) {
+
+            /* Reset artificial mobile heights */
+            .img-box {
+                min-height: auto;
+            }
+
+            /* Frame 1410126388 (Master Parent) */
+            .master-gallery-frame {
+                max-width: 1720px;
+                margin: 0 auto;
+                display: grid;
+                /* Ratio exactly maps Main Column (1431px) to Sidebar (271px) */
+                grid-template-columns: 1431fr 271fr;
+                gap: 18px;
+                align-items: start;
+            }
+
+            /* Frame 1410126386 (Main Left Column) */
+            .gallery-main-column {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                /* Standardized vertical gap */
+            }
+
+            /* Ensure rows behave as structural grids */
+            .gallery-row {
+                display: grid;
+                width: 100%;
+            }
+
+            /* Frame 1410126385: Row 1 */
+            .figma-row-1 {
+                height: 401px;
+                gap: 18px;
+                /* Sub-pixel width mappings: 551px | 309px | 535px */
+                grid-template-columns: 551fr 309fr 535fr;
+            }
+
+            /* Frame 1410126382: Row 2 */
+            .figma-row-2 {
+                height: 250px;
+                gap: 19.31px;
+                /* Extracted exact Figma gap for this specific row */
+                /* Sub-pixel width mappings: 444.34px | 444.34px | 504px */
+                grid-template-columns: 444.34fr 444.34fr 504fr;
+            }
+
+            /* Frame 1410126384: Row 3 */
+            .figma-row-3 {
+                height: 362.13px;
+                gap: 18px;
+                /* Sub-pixel width mappings: 423px | 482.84px | 489px */
+                grid-template-columns: 423fr 482.84fr 489fr;
+            }
+
+            /* Frame 1410126387 (Sidebar Right Column) */
+            .gallery-sidebar-column {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            /* Explicit heights mapped directly from the individual side image nodes */
+            .gallery-sidebar-column .figma-side-1 {
+                height: 344px;
+            }
+
+            .gallery-sidebar-column .figma-side-2 {
+                height: 369px;
+            }
+
+            .gallery-sidebar-column .figma-side-3 {
+                height: 300px;
+            }
+        }
+
+        .img-box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: block;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            /* Crucial: Prevents stretching */
+            border-radius: 2px;
+        }
+
+        /* ========================================================= */
+        /* MOBILE FIRST LAYOUT (Standard Vertical Stack)            */
+        /* ========================================================= */
+        .gallery-hero-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            /* Standardized gap from Figma */
+            width: 100%;
+        }
+
+        .gallery-left-group,
+        .gallery-sub-column,
+        .gallery-hero-column {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 100%;
+        }
+
+        /* Provide basic fluid minimum heights for mobile stacking */
+        .img-box {
+            min-height: 250px;
+        }
+
+        .img-box.hero-img {
+            min-height: 400px;
+        }
+
+        /* ========================================================= */
+        /* TABLET VIEW (Intermediate Grid)                          */
+        /* ========================================================= */
+        @media (min-width: 768px) {
+
+            /* Switch the main columns side by side, stacking the hero image neatly below or alongside */
+            .gallery-left-group {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                align-items: start;
+            }
+        }
+
+        /* ========================================================= */
+        /* DESKTOP VIEW (Pixel-Perfect Figma Data Match)            */
+        /* ========================================================= */
+        @media (min-width: 1100px) {
+
+            /* Reset artificial mobile heights */
+            .img-box,
+            .img-box.hero-img {
+                min-height: auto;
+            }
+
+            /* Master Container (Frame 1410126357) */
+            .gallery-hero-wrapper {
+                max-width: 1285px;
+                margin: 0 auto;
+                display: grid;
+                /* Maps the exact Figma width ratio: Left Group (697px) vs Hero Image (556px) */
+                grid-template-columns: 697fr 556fr;
+                gap: 32px;
+                align-items: end;
+                /* Aligns the bottom edges as dictated by Figma's coordinates */
+            }
+
+            /* Left Group Wrapper (Frame 1410126356) */
+            .gallery-left-group {
+                display: grid;
+                /* Maps the internal columns: Far-Left (324px) vs Mid-Left (330px) */
+                grid-template-columns: 324fr 330fr;
+                gap: 32px;
+                align-items: end;
+            }
+
+            /* Sub-column structural rules */
+            .gallery-sub-column {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            /* Explicit Heights mapped directly from Far-Left Column (Frame 1000004409) */
+            .far-left .h-318 {
+                height: 318px;
+            }
+
+            .far-left .h-353 {
+                height: 353px;
+            }
+
+            .far-left .h-240 {
+                height: 240px;
+            }
+
+            /* Explicit Heights mapped directly from Mid-Left Column (Frame 1000004408) */
+            .mid-left .h-346 {
+                height: 346px;
+            }
+
+            .mid-left .h-365 {
+                height: 365px;
+            }
+
+            .mid-left .h-330 {
+                height: 330px;
+            }
+
+            /* Hero Image Column (_ (12) 1) */
+            .gallery-hero-column {
+                display: block;
+                height: 1268px;
+                /* Enforces the exact vertical bounds of the hero display */
+            }
+
+            .gallery-hero-column .hero-img {
+                height: 1268px;
+            }
+        }
+
+        /* Core container rules enforcing object-fitting to prevent distortion */
+        .lofi-card {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: block;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lofi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .lofi-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            /* Crucial: Prevents stretching of sketches */
+            object-position: top center;
+        }
+
+        /* ========================================================= */
+        /* MOBILE FIRST LAYOUT (Fluid Vertical Stack)               */
+        /* ========================================================= */
+        .master-wireframe-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            /* Scaled down gap for mobile readability */
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .wireframe-row {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+        }
+
+        /* Enforce a clean default height for single stacked views */
+        .lofi-card {
+            min-height: 260px;
+        }
+
+        /* ========================================================= */
+        /* TABLET VIEW (Intermediate 2-Column Grid)                 */
+        /* ========================================================= */
+        @media (min-width: 768px) {
+            .master-wireframe-grid {
+                max-width: 900px;
+            }
+
+            .wireframe-row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .lofi-card {
+                min-height: 220px;
+            }
+        }
+
+        /* ========================================================= */
+        /* DESKTOP VIEW (Pixel-Perfect Figma Data Match)            */
+        /* ========================================================= */
+        @media (min-width: 1200px) {
+
+            /* Reset artificial mobile/tablet heights */
+            .lofi-card {
+                min-height: auto;
+            }
+
+            /* Outer Master Container: Frame 1000004613 */
+            .master-wireframe-grid {
+                max-width: 1288px;
+                /* Maps exactly to the absolute bounding box */
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 80px;
+                /* Preserves the native 80px vertical Auto Layout gap */
+            }
+
+            /* Internal Sub-Rows: Frame 1000004611 & Frame 1000004612 */
+            .wireframe-row {
+                display: grid;
+                /* Maps the 3 extracted equal-width columns directly to fractional units */
+                grid-template-columns: repeat(3, 1fr);
+                gap: 80px;
+                /* Preserves the native 80px horizontal Auto Layout gap */
+                height: 235px;
+                /* Enforces the exact vertical bounds derived from the JSON */
+            }
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 columns */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: 'Inter', sans-serif;
+            /* Similar to Figma font */
+        }
+
+        /* Base Card Styling */
+        .gallery-card {
+            position: relative;
+            height: 250px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            /* Soft border for light cards */
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Text Styling */
+        .card-content h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            /* Default for dark image backgrounds */
+        }
+
+        /* Text color for white background cards */
+        .dark-text h3 {
+            color: #1a202c;
+        }
+
+        /* Handling the Graphics inside cards 2, 5, and 6 */
+        .inner-graphic {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .gallery-card.card-2,
+        .gallery-card.card-5,
+        .gallery-card.card-6 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Responsive Adjustments */
+
+        /* Tablets (2 columns) */
+        @media (max-width: 992px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile (1 column) */
+        @media (max-width: 600px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-card {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -1092,9 +1817,9 @@
                         <li><a href="#solution">Solution</a></li>
                         <li><a href="#design-decisions">Design Decisions</a></li>
                         <li><a href="#user-flow">User Flow</a></li>
-                        <li><a href="#low-fidelity">Low Fidelity</a></li>
+                        <li><a href="#lo-fi-wireframe">Low Fidelity</a></li>
                         <li><a href="#iterations">Iterations</a></li>
-                        <li><a href="#high-fidelity">High Fidelity</a></li>
+                        <li><a href="#hi-fi-wireframes">High Fidelity</a></li>
                         <li><a href="#design-system">Design System</a></li>
                         <li><a href="#prototype">Prototype</a></li>
                         <li><a href="#impact">Impact</a></li>
@@ -1154,6 +1879,12 @@
                         <li>The absence of a unified digital tool limits efficiency, customer satisfaction, and growth
                             potential.& more
                     </ul>
+                </section>
+                <section id="core-insight" class="content-section">
+                    <h2>Core Insights:-</h2>
+                    <p>The problem is not just about managing orders, but about the lack of structured workflows in
+                        tailoring businesses.Manual methods lead to errors, delays, and miscommunication. A simple
+                        digital system can improve efficiency, accuracy, and customer experience.</p>
                     <div class="gallery">
 
                         <div class="card item1">
@@ -1175,14 +1906,17 @@
                     </div>
                 </section>
 
+
+
                 <section id="research" class="content-section">
                     <h2>Research</h2>
-                    <h6>Methods:</h6>
-                    <ul>
-                        <li>Conducted field visits to tailoring shops</li>
-                        <li>Interviewed tailors, boutique owners, and customers</li>
-                        <li>Collected survey responses from 60+ users</li>
-                    </ul>
+                    <h4>Methods:</h6>
+                        <br>
+                        <ul>
+                            <li>Conducted field visits to tailoring shops</li>
+                            <li>Interviewed tailors, boutique owners, and customers</li>
+                            <li>Collected survey responses from 60+ users</li>
+                        </ul>
                 </section>
 
                 <!-- You can continue adding the rest of your sections following this pattern -->
@@ -1660,8 +2394,461 @@
 
 
                 </section>
+                <section id="design-decisions" class="content-section">
+                    <h2>Design Decisions</h2>
+                    <p>The design focuses on simplicity, clarity, and ease of use, tailored specifically for tablet
+                        usage in tailoring shops where work is often collaborative and desk-based.</p>
+
+                    <div class="gallery-container">
+                        <div class="gallery-card card-1"
+                            style="background-image: url('assets/style-makers/design-decisions/frame-1.png');">
+                            <div class="card-content">
+                                <h3>Tablet-First Design</h3>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card card-1"
+                            style="background-image: url('assets/style-makers/design-decisions/frame-2.png');">
+                            <h3>Step-by-Step Workflow</h3>
+                        </div>
+
+                        <div class="gallery-card card-3"
+                            style="background-image: url('assets/style-makers/design-decisions/frame-3.png');">
+
+                            <div class="card-content">
+                                <h3>Simple Interface</h3>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card card-4"
+                            style="background-image: url('assets/style-makers/design-decisions/frame-4.png');">
+                            <div class="card-content dark-text">
+                                <h3>Visual-First Approach</h3>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card card-4"
+                            style="background-image: url('assets/style-makers/design-decisions/frame-5.png');">
+                            <div class="card-content dark-text">
+                                <h3>Familiar Workflow Design</h3>
+                            </div>
+                        </div>
+
+
+
+                        <div class="gallery-card card-3" style="background-color: #ffffff;">
+                            <div class="card-content dark-text">
+                                <img src="assets/style-makers/design-decisions/frame-6.png" alt="Chart"
+                                    class="inner-graphic">
+                                <h3>Multi-User Accessibility</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="content-section" id="">
+                    <img src="/assets/style-makers/Frame-4.png" alt="" style="width: 100%;height: 100%;">
+                </section>
+                <section class="content-section" id="user-flow">
+                    <h2>User Flow</h2>
+                    <img src="/assets/style-makers/userflow.png" alt="" style="width: 100%;height: 100%;">
+                </section>
+                <section class="content-section" id="lo-fi-wireframe">
+                    <h2>Lo-Fi Wireframe</h2>
+                    <div class="master-wireframe-grid">
+
+                        <div class="wireframe-row">
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 1">
+                                <img src="/assets/style-makers/lofi-frames/img1.png" alt="Dashboard Sketch Wireframe">
+                            </a>
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 2">
+                                <img src="/assets/style-makers/lofi-frames/img2.png" alt="Form Layout Wireframe">
+                            </a>
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 3">
+                                <img src="/assets/style-makers/lofi-frames/img3.png" alt="Sidebar Navigation Wireframe">
+                            </a>
+                        </div>
+
+                        <div class="wireframe-row">
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 4">
+                                <img src="/assets/style-makers/lofi-frames/img4.png" alt="List View Sketch Wireframe">
+                            </a>
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 5">
+                                <img src="/assets/style-makers/lofi-frames/img5.png" alt="Settings Screen Wireframe">
+                            </a>
+                            <a href="#" class="lofi-card" aria-label="View Wireframe 6">
+                                <img src="/assets/style-makers/lofi-frames/img6.png" alt="Scanner Table Wireframe">
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+                <section class="content-section" id="iterations">
+                    <h2>Iterations</h2>
+                    <p>The design evolved through multiple iterations based on user feedback and usability observations
+                        during testing.</p>
+                    <h4>Simplified Navigation</h4>
+                    <br>
+                    <p>The initial design had multiple steps and complex navigation. It was simplified to make task
+                        completion faster and more intuitive.</p>
+                    <h4>Improved Readability</h4>
+                    <br>
+                    <p>Increased font sizes and spacing to ensure better visibility on tablet screens.</p>
+                    <h4>Enhanced Button Visibility</h4>
+                    <br>
+                    <p>Simplified input fields to reduce effort and speed up order creation.</p>
+                    <h4>Better Workflow Clarity</h4>
+                    <br>
+                    <p>Reorganized screens to match real-world tailoring processes, improving user understanding.</p>
+                    <div class="gallery-hero-wrapper">
+
+                        <div class="gallery-left-group">
+
+                            <div class="gallery-sub-column far-left">
+                                <div class="img-box h-318"><img src="/assets/style-makers/model-images/img1.png"
+                                        alt="Tailor process 1"></div>
+                                <div class="img-box h-353"><img src="/assets/style-makers/model-images/im2.png"
+                                        alt="Tailor process 2"></div>
+                                <div class="img-box h-240"><img src="/assets/style-makers/model-images/img3.png"
+                                        alt="Tailor process 3"></div>
+                            </div>
+
+                            <div class="gallery-sub-column mid-left">
+                                <div class="img-box h-346"><img src="/assets/style-makers/model-images/img4.png"
+                                        alt="Tailor fitting 1"></div>
+                                <div class="img-box h-365"><img src="/assets/style-makers/model-images/img5.png"
+                                        alt="Tailor fitting 2"></div>
+                                <div class="img-box h-330"><img src="/assets/style-makers/model-images/img6.png"
+                                        alt="Tailor fitting 3"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="gallery-hero-column">
+                            <div class="img-box hero-img">
+                                <img src="/assets/style-makers/model-images/img7.png" alt="Mannequin Hero Display">
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <section class="content-section" id="hi-fi-wireframes">
+                    <h2>Hi-Fi Wireframes</h2>
+                    <img src="assets/style-makers/Frame-5.png" alt="" style="width:100%;height: 100%;">
+                </section>
+                <section class="content-section" id="design-system"
+                    style=" display: flex; flex-direction: column; gap: 20px;">
+                    <h2>Design Systems</h2>
+                    <h4>Branding Colors</h4>
+                    <br>
+                    <div>
+
+
+                        <h4>Primary and Secondary or Accent color</h4>
+                        <div class="color-swatches-row">
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #05051B;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#05051B</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #0A243F;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#0A243F</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #6B7C8A;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#6B7C8A</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+
+                        <h4>Neutral Colors</h4>
+                        <div class="color-swatches-row">
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #131313;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#131313</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #E4E6EA;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#E4E6EA</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #FAFAFA;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#FAFAFA</span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="color-swatch-box" style="background-color: #FFFFFF;"></div>
+                                <div class="details">
+                                    <span class="label">Colours Code</span>
+                                    <span class="hex-code">#FFFFFF</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+
+                            <h4>Semantics color</h4>
+                            <div class="color-swatches-row">
+                                <div class="">
+                                    <div class="color-swatch-box" style="background-color: #FF6A00;"></div>
+                                    <div class="details">
+                                        <span class="label">Colours Code</span>
+                                        <span class="hex-code">#FF6A00</span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="color-swatch-box" style="background-color: #FFFB00;"></div>
+                                    <div class="details">
+                                        <span class="label">Colours Code</span>
+                                        <span class="hex-code">#FFFB00</span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="color-swatch-box" style="background-color: #1DC72E;"></div>
+                                    <div class="details">
+                                        <span class="label">Colours Code</span>
+                                        <span class="hex-code">#1DC72E</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="">
+                                    <div class="color-swatch-box" style="background-color: #0057FF;"></div>
+                                    <div class="details">
+                                        <span class="label">Colours Code</span>
+                                        <span class="hex-code">#0057FF</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </section>
+                <section class="content-section" id="typography">
+                    <h2>Typography</h2>
+                    <div class="header">
+                        <div class="main-title">Typeface <span>1.INTER</span></div>
+                        <div class="section-title">Fonts & Fonts Weights <span>(Inter)</span></div>
+                    </div>
+
+                    <div class="charset">
+                        <div>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                        <div>a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+                        <div>0 1 2 3 4 5 6 7 8 9</div>
+                    </div>
+
+                    <div class="weight-row size-48">
+                        <span class="size-label">48px</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Lightr</span>
+                        <span class="w-extralight">Extra..</span>
+                    </div>
+
+                    <div class="weight-row size-32">
+                        <span class="size-label">32px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                        <span class="w-thin">Thin</span>
+                    </div>
+
+                    <div class="weight-row size-24">
+                        <span class="size-label">24px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                    </div>
+
+                    <div class="weight-row size-18">
+                        <span class="size-label">18px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                        <span class="w-thin">Thin</span>
+                    </div>
+
+                    <div class="weight-row size-16">
+                        <span class="size-label">16px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                        <span class="w-thin">Thin</span>
+                    </div>
+
+                    <div class="weight-row size-14">
+                        <span class="size-label">14px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                        <span class="w-thin">Thin</span>
+                    </div>
+
+                    <div class="weight-row size-12">
+                        <span class="size-label">12px</span>
+                        <span class="w-bold">Bold</span>
+                        <span class="w-semibold">SemiBold</span>
+                        <span class="w-medium">Medium</span>
+                        <span class="w-regular">Regular</span>
+                        <span class="w-light">Light</span>
+                        <span class="w-extralight">Extra Light</span>
+                        <span class="w-thin">Thin</span>
+                    </div>
+                    <img src="/assets/style-makers/typography.png" alt=""
+                        style="width: 100%; height: auto; object-fit: cover;">
+                </section>
+
+                <section class="content-section" id="prototype">
+                    <h2>Prototype</h2>
+                    <div style="max-width: 1285px; height: 500px; background-color: #0b2a04; margin: auto;">
+
+                    </div>
+                </section>
+                <section class="content-section" id="impact">
+                    <h2>Impact</h2>
+                    <p>The solution improves workflow efficiency by replacing manual processes with a structured digital
+                        system.  It helps reduce errors, improve communication, and streamline daily operations for
+                        tailors and boutique owners.</p>
+                    <ul>
+                        <li>Reduces dependency on manual tracking systems</li>
+                        <li>Improves accuracy of customer data and measurements</li>
+                        <li>Enhances communication between owners, workers, and customers</li>
+                        <li>Improves order tracking and delivery management</li>
+                        <li>Reduces confusion and operational errors</li>
+                        <li>Increases overall efficiency and productivity</li>
+                    </ul>
+                </section>
+                <section class="content-section" id="conclusion">
+                    <h2>Conclusion</h2>
+                    <ul>
+                        <li>Style Makers transforms traditional tailoring workflows into a structured and efficient
+                            digital
+                            experience.</li>
+                        <li>By addressing real-world challenges such as manual tracking, miscommunication, and delivery
+                            delays, the platform enables better control, accuracy, and transparency in daily operations.
+                        </li>
+                        <li>The design emphasizes simplicity, accessibility, and familiarity, ensuring easy adoption for
+                            users with varying levels of technical expertise.</li>
+                        <li>This project demonstrates how thoughtful, user-centered design can improve both operational
+                            efficiency and customer satisfaction in small-scale businesses.</li>
+                    </ul>
+                </section>
+                <section class="content-section" id="what-i-learned">
+                    <h2>What I Learned</h2>
+                    <p>
+                        This project helped me understand the importance of solving real-world problems through design
+                        rather than focusing only on visual output. By engaging directly with tailors, boutique owners,
+                        and customers across different locations, I gained deeper insights into how traditional
+                        workflows impact efficiency, communication, and overall business operations.
+                    </p>
+                    <p>
+
+                        I learned how to conduct end-to-end user research, identify core pain points, and translate
+                        those insights into practical design solutions. Working closely with real users also improved my
+                        ability to design for clarity, simplicity, and accessibility, especially for users with low
+                        technical familiarity.
+                    </p>
+                    <p>
+
+                        Through testing the product on a tablet, I understood the importance of usability factors such
+                        as readability, touch interactions, and navigation. Iterating based on user feedback helped me
+                        refine the experience and make it more intuitive and reliable.
+                    </p>
+                    <p>
+
+                        Overall, this project strengthened my ability to bridge the gap between design and real-world
+                        usage, emphasizing that effective design is not just about aesthetics, but about creating
+                        meaningful, usable, and scalable solutions.
+                    </p>
+                    </p>
+                </section>
+                <section class="content-section" id="testing">
+                    <h2>Testing</h2>
+                    <img src="assets/style-makers/testing.png" alt="" style="width:100%; height:auto; margin: auto;">
+                </section>
+
 
             </main>
+        </div>
+        <div class="master-gallery-frame">
+
+            <div class="gallery-main-column">
+
+                <div class="gallery-row figma-row-1">
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-1.png" alt="IMG_6005"></div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-2.png" alt="IMG_5946"></div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-3.png" alt="WhatsApp Image 1">
+                    </div>
+                </div>
+
+                <div class="gallery-row figma-row-2">
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-4.png" alt="IMG_5964"></div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-5.png" alt="IMG_5969"></div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-6.png" alt="WhatsApp Image 2">
+                    </div>
+                </div>
+
+                <div class="gallery-row figma-row-3">
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-7.png" alt="WhatsApp Image 3">
+                    </div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-8.png" alt="WhatsApp Image 4">
+                    </div>
+                    <div class="img-box"><img src="/assets/style-makers/last-gallery/img-9.png" alt="WhatsApp Image 5">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="gallery-sidebar-column">
+                <div class="img-box figma-side-1"><img src="/assets/style-makers/last-gallery/img-10.png"
+                        alt="WhatsApp Image Side 1"></div>
+                <div class="img-box figma-side-2"><img src="/assets/style-makers/last-gallery/img-11.png"
+                        alt="WhatsApp Image Side 2"></div>
+                <div class="img-box figma-side-3"><img src="/assets/style-makers/last-gallery/img-12.png"
+                        alt="Rectangle 18002"></div>
+            </div>
+
+        </div>
+        <div style="margin-top: 30px;">
+
+            <img src="assets/style-makers/thanks.png" style="width: 100%; height: 100%;" alt="thanks">
         </div>
 
     </div>
