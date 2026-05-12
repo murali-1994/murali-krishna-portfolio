@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyNILpay Case Study</title>
+    <style>
+        /* --- CSS VARIABLES (Update these with exact Figma values) --- */
+        :root {
+            /* Fonts */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-breadcrumb: 14px;
+            --font-size-h1: 48px;
+            --font-size-read-more: 12px;
+            --font-size-labels: 16px;
+            --font-size-values: 18px;
+            --font-size-availability-title: 20px;
+
+            /* Colors */
+            --color-text-dark: #111111;
+            --color-text-gray: #888888;
+            --color-text-light: #c0c0c0;
+            /* myNILpay light text in title */
+            --color-bg-white: #ffffff;
+            --color-bg-purple: #5c3cbe;
+            /* Hero placeholder color */
+            --color-bg-light-box: #f4f4f5;
+            /* Availability section background */
+            --color-line: #d1d1d1;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #222222;
+            /* Dark background behind the layout */
+            color: var(--color-text-dark);
+            /* padding: 40px; */
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: var(--color-bg-white);
+            padding: 40px 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- BREADCRUMB ---
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            font-size: var(--font-size-breadcrumb);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb .line {
+            width: 120px;
+            height: 1px;
+            background-color: var(--color-line);
+            margin-right: 20px;
+        }
+
+        .breadcrumb .current {
+            font-weight: 700;
+            color: var(--color-text-dark);
+        }
+
+        .breadcrumb .separator {
+            margin: 0 8px;
+            color: var(--color-text-gray);
+        }
+
+        .breadcrumb .category {
+            color: var(--color-text-gray);
+            font-weight: 400;
+        } */
+
+        /* --- MAIN TITLE --- */
+        .main-title {
+            font-size: var(--font-size-h1);
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .main-title .light-text {
+            color: var(--color-text-light);
+            font-weight: 400;
+        }
+
+        /* --- READ MORE BUTTON --- */
+        .read-more {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: none;
+            border: none;
+            font-family: var(--font-family);
+            font-size: var(--font-size-read-more);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            margin-bottom: 50px;
+            color: var(--color-text-dark);
+        }
+
+        .read-more .icon-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #eeeeee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* --- HERO IMAGE PLACEHOLDER --- */
+        .hero-image-section {
+            width: 100%;
+            aspect-ratio: 2.2 / 1;
+            /* Standard ultra-wide ratio for mockups */
+            background-color: var(--color-bg-purple);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            /* If you export the background with grid lines from Figma, apply it here as background-image */
+        }
+
+        /* --- PROJECT DETAILS --- */
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .detail-item .label {
+            color: var(--color-text-gray);
+            font-size: var(--font-size-labels);
+            font-weight: 600;
+        }
+
+        .detail-item .value {
+            color: var(--color-text-dark);
+            font-size: var(--font-size-values);
+            font-weight: 700;
+        }
+
+        /* ... Your existing CSS ... */
+
+        @media (max-width: 768px) {
+            .project-details {
+                /* Stack items vertically */
+                flex-direction: column;
+
+                /* Align items to the left instead of center */
+                align-items: flex-start;
+
+                /* Reduce spacing for a tighter mobile look */
+                gap: 20px;
+                margin-bottom: 40px;
+                padding: 0 15px;
+            }
+
+            .detail-item {
+                /* Optional: Ensure labels and values stay on one line 
+           or wrap if the text is very long */
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+        }
+
+        /* --- AVAILABILITY SECTION --- */
+        .availability-section {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-bg-light-box);
+            padding: 40px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .availability-section h3 {
+            font-size: var(--font-size-availability-title);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Placeholder style for the store buttons to match the black badges */
+        .store-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #000;
+            height: 44px;
+        }
+
+        .store-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .case-study-layout {
+            display: grid;
+            grid-template-columns: 180px minmax(0, 1040px);
+            align-items: flex-start;
+            /* Important for sticky sidebar */
+            gap: clamp(40px, 7vw, 100px);
+            justify-content: start;
+            width: 100%;
+            margin: 80px 0;
+            padding: 0;
+        }
+
+        /* --- LEFT SIDEBAR --- */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            /* This keeps the sidebar fixed while the right side scrolls */
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Vertical track (gray line) */
+        .sidebar ul::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e0e0e0;
+            z-index: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            padding-left: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar a:hover {
+            color: var(--color-bg-purple);
+        }
+
+        .sidebar a.active {
+            color: var(--color-bg-purple);
+        }
+
+        /* Active indicator (purple pill) */
+        .sidebar a.active::before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            /* Center over the 2px gray line */
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: var(--color-bg-purple);
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        /* --- RIGHT CONTENT AREA --- */
+        .content-area {
+            width: 100%;
+            min-width: 0;
+            max-width: 1040px;
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+            /* Prevents the section from scrolling tight against the top edge */
+            scroll-margin-top: 80px;
+        }
+
+        .content-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-text-dark);
+        }
+
+        .content-section p,
+        .content-section li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-text-body);
+            margin-bottom: 16px;
+        }
+
+        .content-section ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+            /* Tighter spacing for list items */
+        }
+
+        /* Image styling */
+        .content-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            display: block;
+        }
+
+        @media (max-width: 1180px) {
+            .container {
+                padding: 64px 40px;
+            }
+
+            .case-study-layout {
+                grid-template-columns: 170px minmax(0, 1fr);
+                gap: 48px;
+            }
+
+            .content-area {
+                max-width: none;
+            }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        /* --- SPORTS ILLUSTRATIONS GRID (Component 188) --- */
+        .sports-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .sports-grid__cell {
+            border-right: 1px solid #d1d5db;
+            border-bottom: 1px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            aspect-ratio: 470 / 399;
+            overflow: hidden;
+        }
+
+        /* Remove right border on last column */
+        .sports-grid__cell:nth-child(2n) {
+            border-right: none;
+        }
+
+        /* Remove bottom border on last row */
+        .sports-grid__cell:nth-child(5),
+        .sports-grid__cell:nth-child(6) {
+            border-bottom: none;
+        }
+
+        .sports-grid__cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sports-grid__cell {
+                border-right: none;
+                border-bottom: 1px solid #d1d5db;
+                aspect-ratio: 4 / 3;
+            }
+
+            .sports-grid__cell:last-child {
+                border-bottom: none;
+            }
+
+            /* Reset nth-child overrides for single column */
+            .sports-grid__cell:nth-child(5) {
+                border-bottom: 1px solid #d1d5db;
+            }
+        }
+
+        /* Three column grid - single row on tablet/laptop, single column on mobile */
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .three-col-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Driving Booking Section - Two Column Layout */
+        /* Frame 1707478385 */
+
+
+
+
+        .db-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            /* background: linear-gradient(35deg, rgba(245, 245, 245, 0.35) 30.08%, rgba(126, 179, 221, 0.35) 100%); */
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1) 50%, rgba(126, 179, 221, 1) 100%);
+            border-radius: 16px;
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .db-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .db-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            /* margin-bottom: 16px; */
+            line-height: 1.2;
+        }
+
+        .db-description {
+            font-size: 16px;
+            color: #a0aec0;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .db-mockup {
+            flex: 1;
+            min-width: 0;
+            max-width: 270px;
+        }
+
+        .db-mockup-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .db-container {
+                flex-direction: column;
+                padding: 24px;
+                gap: 24px;
+            }
+
+            .db-title {
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .db-description {
+                text-align: center;
+            }
+
+            .db-mockup {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 48px 28px;
+            }
+
+            .case-study-layout {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                padding: 0;
+                margin: 40px auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                /* Remove sticky on mobile */
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .sidebar ul::after,
+            .sidebar a.active::before {
+                display: none;
+            }
+
+            .sidebar li {
+                margin-bottom: 0;
+            }
+
+            .sidebar a {
+                padding-left: 0;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-bottom: 4px;
+            }
+
+            .sidebar a.active {
+                border-left-color: transparent;
+                border-bottom-color: var(--color-bg-purple);
+            }
+        }
+
+        .db-wrapper {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            /* Remove background/min-height if dropping directly into an existing layout */
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .db-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        /* Main Container */
+        .db-container {
+            width: 100%;
+            max-width: 1284px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #7eb3dd 100%);
+            border-radius: 13px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 42px 133px;
+            gap: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Left Content Column */
+        .db-content {
+            max-width: 530px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .db-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.5;
+        }
+
+        .db-description {
+            font-size: 24px;
+            font-weight: 500;
+            color: #555555;
+            line-height: 1.75;
+        }
+
+        /* Right Image Section */
+        .db-mockup {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .db-mockup-img {
+            width: 100%;
+            max-width: 274px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0px 20px 40px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .db-container {
+                padding: 40px 60px;
+            }
+
+            .db-title {
+                font-size: 28px;
+            }
+
+            .db-description {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .db-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 30px;
+                gap: 30px;
+            }
+
+            .db-content {
+                align-items: center;
+            }
+
+            .db-mockup-img {
+                max-width: 240px;
+            }
+
+            .db-mockup-img-3 {
+                max-width: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .db-container {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .db-title {
+                font-size: 24px;
+            }
+
+            .db-description {
+                font-size: 16px;
+            }
+
+            .db-mockup-img {
+                max-width: 200px;
+            }
+
+            .db-mockup-img-3 {
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <!-- <div class="breadcrumb">
+            <div class="line"></div>
+            <a href="#" onclick="history.back(); return false;" style="text-decoration: none;">
+                <span class="current">Home page</span>
+            </a> <span class="separator">/</span>
+            <span class="category">My Case Study</span>
+        </div> -->
+
+        <!-- Main Title -->
+        <!-- <h1 class="main-title">
+            Welcome To <span class="light-text">myNILpay</span>
+        </h1> -->
+
+        <!-- Read More -->
+        <!-- <button class="read-more">
+            READ MORE
+            <span class="icon-circle">↓</span>
+        </button> -->
+
+        <!-- Hero Image Placeholder -->
+        <div class="hero-image-section">
+            <img src="/assets/pilot/frame1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
+        </div>
+
+        <!-- Project Details -->
+        <div class="project-details">
+            <div class="detail-item">
+                <span class="label">Project Name:</span>
+                <span class="value">Pilot</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Client:</span>
+                <span class="value">Indian</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Industry:</span>
+                <span class="value">Transport/EdTech</span>
+            </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="availability-section">
+            <div
+                style="display: flex; align-items: center; justify-content: center; padding: 0 40px; align-self: stretch; border-radius: 4px 0 0 4px;">
+                <h3 style="margin: 0">Pilot is available now</h3>
+            </div>
+            <div class="store-buttons">
+
+
+                <!-- App Store Button Placeholder -->
+                <a href="#" class="store-btn">
+                    <img src="/assets/icons/apple-icon.svg" alt="App Store Icon" style="width: 25px; height: 25px;" />
+                    <span
+                        style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.2;">
+                        <span style="font-size: 10px; font-weight: 400;">Download on the</span>
+                        App Store
+                    </span>
+                </a>
+
+                <!-- Google Play Button Placeholder -->
+                <a href="#" class="store-btn">
+                    <img src="/assets/icons/google-play-store-icon.svg" alt="App Store Icon"
+                        style="width: 25px; height: 25px;" />
+                    <span
+                        style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.2;">
+                        <span style="font-size: 10px; font-weight: 400;">GET IT ON</span>
+                        Google Play
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="case-study-layout">
+
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav>
+                    <ul id="nav-links">
+                        <li><a href="#overview" class="active">Overview</a></li>
+                        <li><a href="#problem">Why This Problem Matters</a></li>
+                        <li><a href="#project-goal">What Are We Trying to Achieve?</a></li>
+                        <li><a href="#challenges">Who Are We Designing For?</a></li>
+                        <li><a href="#solution">How Will They Benefit?</a></li>
+                        <li><a href="#design-decisions">How Can We Solve This Better?</a></li>
+                        <li><a href="#ui-design">What Is the Easiest Way to Solve It?</a></li>
+                        <li><a href="#user-flow">User Flow</a></li>
+                        <li><a href="#final-solution">What Does the Final Solution Look Like?</a></li>
+                        <li><a href="#high-fidelity">High Fidelity</a></li>
+                        <li><a href="#prototype">Prototype</a></li>
+                        <li><a href="#iterations">When Will We Know It’s Working?</a></li>
+                        <li><a href="#impact">Did We Solve the Problem?</a></li>
+                        <li><a href="#my-contribution">My Contribution</a></li>
+                        <li><a href="#why-this-matters">What I Learned</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content-area">
+
+                <section id="overview" class="content-section">
+                    <h2>Overview</h2>
+                    <p>Pilot is a mobile - first driving learning platform designed to simplify the driving education
+                        experience in India.
+                        The platform helps learners connect with verified instructors, schedule driving classes, track
+                        progress, and receive structured learning guidance through a seamless digital experience. Pilot
+                        is a live product available on the App Store and Google Play Store.</p>
+                </section>
+
+                <section id="problem" class="content-section">
+                    <h2>Why This Problem Matters</h2>
+                    <p>Learning to drive in India is still heavily dependent on offline systems, inconsistent instructor
+                        experiences, and unstructured training methods.</p>
+                    <br>
+                    <h4>Most learners struggle with:</h4>
+                    <br>
+                    <ul>
+                        <li>Lack of trusted instructors</li>
+                        <li>Poor scheduling systems</li>
+                        <li>No progress tracking</li>
+                        <li>Safety concerns</li>
+                        <li>Confusing licensing processes</li>
+                        <li>Limited flexibility and feedback</li>
+                    </ul>
+                    <p>These challenges create stress, low confidence, and inconsistent learning experiences for users.
+                        This is not just a usability issue it is a trust, safety, and structure problem where the lack
+                        of transparency and guidance directly impacts learner confidence and learning outcomes.</p>
+                    <img src="/assets/pilot/frame2.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
+
+                </section>
+                <section id="project-goal" class="content-section">
+                    <h2>What Are We Trying to Achieve</h2>
+                    <p>The goal was to create a structured and trustworthy driving learning platform that simplifies
+                        scheduling, improves learner confidence, and provides a guided end-to-end learning experience.
+                    </p>
+                    <h4>The platform needed to:</h4>
+                    <br>
+                    <ul>
+                        <li>improve trust and safety</li>
+                        <li>simplify class booking</li>
+                        <li>provide learning visibility</li>
+                        <li>reduce confusion around licensing</li>
+                        <li>create a more accessible mobile-first experience</li>
+                    </ul>
+                </section>
+
+                <section id="challenges" class="content-section">
+                    <h2>Who Are We Designing For</h2>
+                    <p>The platform was designed to support users with different learning styles, schedules, and comfort
+                        levels.</p>
+                    <div class="three-col-grid">
+                        <img src="/assets/pilot/frame3.png" alt="" style="width: 100%; height: auto;">
+                        <img src="/assets/pilot/frame4.png" alt="" style="width: 100%; height: auto;">
+                        <img src="/assets/pilot/frame5.png" alt="" style="width: 100%; height: auto;">
+                    </div>
+
+                </section>
+
+
+                <section id="solution" class="content-section">
+                    <h2>How Will They Benefit</h2>
+                    <h4>Pilot helps learners:</h4>
+                    <br>
+                    <p>The platform improves confidence, safety, flexibility, and transparency throughout the learning
+                        experience.</p>
+                    <ul>
+                        <li style="font-weight: 700;">schedule driving sessions easily</li>
+                        <li style="font-weight: 700;">learn from verified instructors</li>
+                        <li style="font-weight: 700;">track progress in real time</li>
+                        <li style="font-weight: 700;">receive structured learning guidance</li>
+                        <li style="font-weight: 700;">reduce confusion around licensing and training</li>
+                    </ul>
+                    <img src="/assets/pilot/frame6.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
+
+                </section>
+                <section id="design-decisions" class="content-section">
+                    <h2>How Can We Solve This Better</h2>
+                    <p>Instead of relying on fragmented offline systems, Pilot introduces a digital-first learning
+                        experience that simplifies the entire journey.</p>
+                    <h4>The solution focuses on:</h4>
+                    <br>
+                    <ul>
+                        <li style="font-weight: 700;">verified instructor onboarding</li>
+                        <li style="font-weight: 700;">flexible scheduling</li>
+                        <li style="font-weight: 700;">progress tracking</li>
+                        <li style="font-weight: 700;">guided learning flows</li>
+                        <li style="font-weight: 700;">secure payments</li>
+                        <li style="font-weight: 700;">structured course management</li>
+                    </ul>
+                    <p>The goal was to reduce friction while improving trust and usability.</p>
+
+                </section>
+                <section id="ui-design" class="content-section">
+
+                    <h2>What is the Easiest Way To Solve it</h2>
+                    <p>The experience was simplified into clear step-by-step flows to make the platform easy to
+                        understand and use.</p>
+                    <br>
+                    <h4>Design decisions included:</h4>
+                    <br>
+                    <ul>
+                        <li style="font-weight: 700;">simple onboarding flows</li>
+                        <li style="font-weight: 700;">mobile-first interactions</li>
+                        <li style="font-weight: 700;">clear scheduling experiences</li>
+                        <li style="font-weight: 700;">guided progress tracking</li>
+                        <li style="font-weight: 700;">minimal and distraction-free interfaces</li>
+                    </ul>
+                    <p>Every interaction was designed to reduce confusion and improve accessibility for all learners.
+                    </p>
+
+                </section>
+                <br>
+                <section id="user-flow" class="content-section">
+                    <h2>User Flow</h2>
+                    <img src="/assets/pilot/frame7.png" alt="" style="width: 100%; height: auto; border-radius: 8px;">
+                </section>
+
+                <section id="final-solution" class="content-section">
+                    <h2>What Does The Final Solution Look Like</h2>
+                    <p>The final solution provides a complete learning ecosystem where users can:</p>
+                    <div class="db-container">
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classes</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
+
+                        <div class="db-mockup">
+                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-1.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+                    </div>
+                    <div class="db-container" style="gap: 120px;">
+                        <div class="db-mockup">
+                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-2.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classes</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
+
+
+                    </div>
+                    <div class="db-container" style="gap: 120px;">
+                        <div class="db-mockup">
+                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-3.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classes</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
+
+
+                    </div>
+                    <div class="db-container" style="gap: 120px;">
+                        <div class="db-mockup">
+                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-4.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classes</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
+
+
+                    </div>
+                    <div class="db-container" style="gap: 120px;">
+                        <div class="db-mockup">
+                            <img class="db-mockup-img-3" style="" src="/assets/pilot/mockup-phone-4.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classess</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
+
+
+                    </div>
+
+                </section>
+                <section id="high-fidelity" class="content-section">
+                    <h2>Hight Fidelity</h2>
+                    <img src="/assets/pilot/frame-8.png" style="width: 100%; height: 100%; object-fit: contain;" alt="">
+                </section>
+                <section class="content-section">
+
+                    <img src="/assets/mynilpay/last-frame.png" alt="" style="width: 100%; height: 100%;">
+                </section>
+
+                <section id="why-this-matters" class="content-section">
+                    <h2>Why This Matters</h2>
+                    <p>myNILpay plays a critical role in democratizing opportunities for student athletes by allowing
+                        them to receive direct support from fans. The platform not only simplifies transactions but also
+                        creates a transparent and meaningful connection between users.</p>
+                    <p>By combining compliance, trust, and usability, this solution helps build a fair and scalable
+                        ecosystem for both athletes and fans.</p>
+                </section>
+                <section id="Prototype" class="content-section">
+                    <h2>Prototype</h2>
+                    <div style="width: 100%; height: 500px; background: #ccc;"></div>
+                </section>
+                <section id="iterations" class="content-section">
+                    <h2>When Will We Know It’s Working?</h2>
+                    <p>Success was measured through usability, learner confidence, accessibility, and the ability to
+                        simplify previously fragmented workflows.</p>
+                    <h4>Improvements included:</h4>
+                    <br>
+                    <ul>
+                        <li style="font-weight: 700;">simplified booking experiences</li>
+                        <li style="font-weight: 700;">better scheduling clarity</li>
+                        <li style="font-weight: 700;">increased learner confidence</li>
+                        <li style="font-weight: 700;">improved trust through verified instructors</li>
+                        <li style="font-weight: 700;">structured learning visibility</li>
+                    </ul>
+                    <p>The platform successfully transformed a complex offline process into a more guided digital
+                        experience.</p>
+                </section>
+                <section class="content-section">
+                    <div class="three-col-grid">
+                        <img src="/assets/pilot/frame9.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/frame10.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/frame11.png" style="width: 100%;" alt="">
+                    </div>
+                    <div class="three-col-grid" style="margin-top: 10px;">
+                        <img src="/assets/pilot/frame12.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/frame13.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/frame14.png" style="width: 100%;" alt="">
+                    </div>
+                </section>
+
+                <section id="impact" class="content-section">
+                    <h2>Did We Solve the Problem?</h2>
+                    <ul>
+                        <li>Pilot successfully addressed major pain points around trust, scheduling, learner confidence,
+                            and
+                            accessibility.</li>
+                        <li>By improving structure, transparency, and usability, the platform created a safer and more
+                            confidence-driven learning experience for modern users.</li>
+                        <li>The final product transformed a fragmented offline system into a guided and user-friendly
+                            digital
+                            ecosystem.</li>
+                    </ul>
+                </section>
+                <section class="content-section" id="my-contribution">
+                    <h2>My Contribution</h2>
+                    <p>As the Product Designer for Pilot, I was responsible for designing the complete mobile learning
+                        experience from user flows to final high-fidelity interfaces. <br>My focus was to simplify the
+                        driving learning journey while improving trust, usability, and accessibility for modern
+                        learners.</p>
+                    <div class="three-col-grid">
+                        <img src="/assets/pilot/contributions/img1.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/contributions/img2.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/contributions/img3.png" style="width: 100%;" alt="">
+
+                    </div>
+                    <div class="three-col-grid" style="margin-top: 10px;">
+                        <img src="/assets/pilot/contributions/img4.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/contributions/img5.png" style="width: 100%;" alt="">
+                        <img src="/assets/pilot/contributions/img6.png" style="width: 100%;" alt="">
+
+                    </div>
+                </section>
+                <section class="content-section" id="why-this-matters">
+                    <h2>What I Learned</h2>
+                    <p>This project helped me understand that good design is not just about creating visually appealing
+                        screens it’s about solving real user problems in a simple and meaningful way. <br>
+                        While working on Pilot, I learned how important trust, clarity, and accessibility are in shaping
+                        user experiences, especially for users who may already feel nervous or uncertain during the
+                        learning process. <br>
+                        I also understood the value of simplifying complex workflows into clear step-by-step experiences
+                        that users can easily follow without confusion. <br>
+                        Designing a mobile-first platform taught me how to prioritize usability, reduce friction, and
+                        create experiences that feel guided, comfortable, and easy to use in real-world situations.
+                        <br>
+                        More than just a design project, this experience helped me improve my product thinking and
+                        understand how thoughtful UX decisions can directly impact user confidence and overall
+                        experience.
+                    </p>
+                </section>
+            </main>
+        </div>
+
+    </div>
+    <img src="/assets/pilot/frame15.png" style="width: 100%; height: 100%; margin-top: -100px;" alt="">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Adjusts when the section is considered "active" in the viewport
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+
+                        // Add active class to the link corresponding to the section in view
+                        const activeId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.sidebar a[href="#${activeId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+
+</html>
