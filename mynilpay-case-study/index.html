@@ -374,6 +374,67 @@
         }
 
         /* --- RESPONSIVE DESIGN --- */
+        /* --- SPORTS ILLUSTRATIONS GRID (Component 188) --- */
+        .sports-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .sports-grid__cell {
+            border-right: 1px solid #d1d5db;
+            border-bottom: 1px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            aspect-ratio: 470 / 399;
+            overflow: hidden;
+        }
+
+        /* Remove right border on last column */
+        .sports-grid__cell:nth-child(2n) {
+            border-right: none;
+        }
+
+        /* Remove bottom border on last row */
+        .sports-grid__cell:nth-child(5),
+        .sports-grid__cell:nth-child(6) {
+            border-bottom: none;
+        }
+
+        .sports-grid__cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .sports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sports-grid__cell {
+                border-right: none;
+                border-bottom: 1px solid #d1d5db;
+                aspect-ratio: 4 / 3;
+            }
+
+            .sports-grid__cell:last-child {
+                border-bottom: none;
+            }
+
+            /* Reset nth-child overrides for single column */
+            .sports-grid__cell:nth-child(5) {
+                border-bottom: 1px solid #d1d5db;
+            }
+        }
+
         @media (max-width: 900px) {
             .container {
                 padding: 48px 28px;
@@ -450,8 +511,7 @@
 
         <!-- Hero Image Placeholder -->
         <div class="hero-image-section">
-            <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778148996/murarli-krishna-portfolio/mynilpay/frame-1.png"
-                style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="/assets/new/img-1.png" style="width: 100%; height: 100%; object-fit: cover;">
             <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
         </div>
 
@@ -510,12 +570,16 @@
                 <nav>
                     <ul id="nav-links">
                         <li><a href="#overview" class="active">Overview</a></li>
-                        <li><a href="#project-outcome">Project Outcome</a></li>
-                        <li><a href="#achievements">Achievements</a></li>
-                        <li><a href="#design-success">Design Success</a></li>
-                        <li><a href="#overall-impact">Overall Impact</a></li>
-                        <li><a href="#design-system">Design System</a></li>
+                        <li><a href="#problem">Problem</a></li>
+                        <li><a href="#project-goal">Project Goal</a></li>
+                        <li><a href="#challenges">Challenges</a></li>
+                        <li><a href="#solution">Solution</a></li>
+                        <li><a href="#design-decisions">Design Decisions</a></li>
                         <li><a href="#ui-design">UI Design</a></li>
+                        <li><a href="#design-system">Design System</a></li>
+                        <li><a href="#iterations">Iterations</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                        <li><a href="#why-this-matters">Why This Matters</a></li>
                         <li><a href="#my-contribution">My Contribution</a></li>
                     </ul>
                 </nav>
@@ -533,67 +597,171 @@
                         trustworthy, and inviting for both athletes and fans.</p>
                 </section>
 
-                <section id="project-outcome" class="content-section">
-                    <h2>Project Outcome</h2>
-                    <ul>
-                        <li>Launched core features: fan-to-athlete payments, athlete verification, and digital art
-                            receipts.</li>
-                        <li>Loaded ~500,000 student athletes into the system from all NCAA divisions.</li>
-                        <li>Created a search & discovery flow where fans can easily find athletes by name, sport, or
-                            school.</li>
-                        <li>Built the onboarding flow for athletes to verify identity (.edu, school affiliation) and get
-                            paid.</li>
-                    </ul>
+                <section id="problem" class="content-section">
+                    <h2>Problem</h2>
+                    <p>Problem
+                        The client needed to create a platform that allows fans to directly support college athletes in
+                        a simple, compliant, and trustworthy way. However, existing solutions in this space were either
+                        unclear, difficult to use, or lacked transparency, which created hesitation among users.
+                    </p>
+                    <p>
 
-                    <!-- Placeholder for the large laptop image -->
-                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149001/murarli-krishna-portfolio/mynilpay/frame-2.png"
-                        alt="myNILpay Dashboard Mockup" class="content-image">
+                        Fans often did not fully understand how payments worked, what they would receive in return, or
+                        whether the transaction was legitimate. At the same time, athletes faced challenges in
+                        onboarding, verification, and receiving payments securely.
+
+                    </p>
+                    <p>
+
+                        The absence of a clear, structured, and trustworthy user experience created friction on both
+                        sides, limiting engagement and reducing successful transactions.
+                    </p>
                 </section>
-
-                <section id="achievements" class="content-section">
-                    <h2>Achievements</h2>
+                <section id="project-goal" class="content-section">
+                    <h2>Project Goal</h2>
+                    <p>The goal of this project was to design a seamless and intuitive platform that enables fans to
+                        discover and support athletes easily while ensuring compliance, trust, and transparency
+                        throughout the experience.</p>
+                    <h4>The platform needed to:</h4>
+                    <br>
                     <ul>
-                        <li>Over 450+ student athletes have received real payments shortly after launch.</li>
-                        <li>Got early endorsements & visibility from known names (e.g. Ice Cube, Nancy Lieberman, Andy
-                            Dalton).</li>
-                        <li>Recognized in NIL policy & regulatory discussions at a national/government level.</li>
-                        <li>Users report higher trust and clarity in understanding how payments work.</li>
-                    </ul>
-                </section>
-
-                <!-- You can continue adding the rest of your sections following this pattern -->
-                <section id="design-success" class="content-section">
-                    <h2>Design Success</h2>
-                    <ul>
-                        <li>Designed an intuitive fan journey: simple search → select athlete → make payment → receive
-                            digital receipt/art.</li>
-                        <li>Clean, mobile-friendly layout so fans can quickly pay from phone without confusion.</li>
-                        <li>Athlete flow simplified so verification is easy and onboarding isn’t overwhelming.</li>
+                        <li>Simplify the payment process</li>
+                        <li>Build trust through clear communication and verification</li>
+                        <li>Ensure compliance with NCAA regulations</li>
+                        <li>Provide a smooth onboarding experience for athletes</li>
+                        <li>Create a meaningful connection between fans and athletes</li>
                     </ul>
                 </section>
-                <section id="overall-impact" class="content-section">
-                    <h2>Overall Impact</h2>
-                    <ul>
-                        <li>
-                            <strong>Democratized NIL:</strong> not just star athletes, but every student athlete has a
-                            chance to earn
-                            from
-                            fans.
-                        </li>
-                        <li><strong>Improved fan engagement:</strong> fans feel more connected because they can directly
-                            support athletes
-                            they like.</li>
-                        <li><strong>Built trust:</strong> transparency in payments, legally sound receipts, clean design
-                            all help users
-                            feel safe using the product.</li>
-                        <li><strong>Set a strong foundation for scaling:</strong> design and system built so new
-                            features can be added
-                            without breaking experience.</li>
-                    </ul>
-                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149007/murarli-krishna-portfolio/mynilpay/frame-3.png"
-                        alt="myNILpay Dashboard Mockup" class="content-image">
 
+                <!-- Placeholder for the large laptop image -->
+                <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149001/murarli-krishna-portfolio/mynilpay/frame-2.png"
+                    alt="myNILpay Dashboard Mockup" class="content-image">
+
+                <section id="challenges" class="content-section">
+                    <h2>Challenges</h2>
+                    <p>Designing for myNILpay involved solving multiple complex challenges across usability, compliance,
+                        and trust.</p>
+
+                    <h4>Regulatory Compliance:</h4>
+                    <br>
+                    <p>The platform had to strictly follow NCAA guidelines, ensuring all transactions were legally
+                        compliant.</p>
+                    <h4>Building Trust:</h4>
+                    <br>
+                    <p>Since the platform involves financial transactions, users needed reassurance that payments are
+                        secure, verified, and transparent.</p>
+
+                    <h4>Simplifying Complexity:</h4>
+                    <br>
+                    <p>Payment flows, verification steps, and onboarding processes needed to be simplified for ease of
+                        use.</p>
+                    <h4>Dual User Experience:</h4>
+                    <br>
+                    <p>The platform serves two different user groups fans and athletes each with different needs and
+                        expectations.</p>
+                    <h4>Scalability</h4>
+                    <br>
+                    <p>
+                        The system had to support a large number of athletes (500,000+) while maintaining performance
+                        and usability.
+                    </p>
                 </section>
+
+                <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149007/murarli-krishna-portfolio/mynilpay/frame-3.png"
+                    alt="myNILpay Dashboard Mockup" class="content-image">
+
+                <section id="solution" class="content-section">
+                    <h2>Solution</h2>
+                    <p>To address these challenges, I designed a streamlined and user-friendly platform in Figma that
+                        simplifies
+                        the interaction between fans and athletes while ensuring trust, compliance, and clarity at every
+                        step. The experience focuses on guiding users through a clear journey, from discovering athletes
+                        to completing payments and receiving confirmation.</p>
+                    <div style="margin-left: 15px;">
+
+                        <ol>
+                            <li><strong>Simplified Payment Flow:</strong>
+                                <p> Designed a step-by-step payment experience to reduce confusion and improve
+                                    completion rates.</p>
+                            </li>
+                            <li><strong>Trust Indicators:</strong>
+                                <p> Introduced verification indicators, secure payment confirmations, and digital
+                                    receipts to build user confidence.</p>
+                            </li>
+                            <li><strong>Athlete Onboarding:</strong>
+                                <p> Created a structured onboarding flow with .edu verification to ensure authenticity
+                                    and compliance.</p>
+                            </li>
+                            <li><strong>Search & Discovery:</strong>
+                                <p> Designed an intuitive search system allowing fans to find athletes by name, sport,
+                                    or school.</p>
+                            </li>
+                            <li><strong>Meaningful Interaction:</strong>
+                                <p> Added digital art receipts to make transactions feel personal and engaging for
+                                    users.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- Sports Illustrations Grid (Component 188 · 2 col × 3 row) -->
+                    <div class="sports-grid">
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-1.png" alt="Soccer player" />
+                        </div>
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-2.png" alt="Snowboarder" />
+                        </div>
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-3.png" alt="Tennis player" />
+                        </div>
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-4.png" alt="Basketball player" />
+                        </div>
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-5.png" alt="Swimmer" />
+                        </div>
+                        <div class="sports-grid__cell">
+                            <img src="/assets/mynilpay/game/img-6.png" alt="Horse rider" />
+                        </div>
+                    </div>
+                </section>
+                <section id="design-decisions" class="content-section">
+                    <h2>Design Decisions</h2>
+                    <p>Every design decision was made to balance usability, trust, and compliance while ensuring a
+                        smooth user experience.</p>
+                    <div style="margin-left: 15px;">
+                        <ol>
+                            <li><strong>Step-by-Step Flow:</strong>
+                                <p>Breaking complex actions into smaller steps reduces cognitive load and improves
+                                    usability.</p>
+                            </li>
+                            <li><strong>Trust Indicators:</strong>
+                                <p>Visible verification badges, secure payment confirmations, and clear receipts help
+                                    users feel confident.</p>
+                            </li>
+                            <li><strong>Minimal Interface:</strong>
+                                <p>Clean and distraction-free UI allows users to focus on key actions like searching and
+                                    paying.</p>
+                            </li>
+                            <li><strong>Mobile-First Approach:</strong>
+                                <p>Designed for quick interactions, ensuring users can complete transactions easily on
+                                    mobile devices.</p>
+                            </li>
+                            <li><strong>Clear Communication:</strong>
+                                <p>Simplified language and clear instructions help users understand each step of the
+                                    process.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+                <section id="ui-design" class="content-section">
+
+                    <h2>UI Design</h2>
+                    <br>
+                    <div style="width: 100%; height: 600px; background-color: #111111;">
+
+                    </div>
+                </section>
+                <br>
                 <section id="design-system" class="content-section">
                     <h2>Design system</h2>
                     <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149009/murarli-krishna-portfolio/mynilpay/frame-4.png"
@@ -602,55 +770,62 @@
                         alt="myNILpay Dashboard Mockup" class="content-image">
 
                 </section>
-                <section id="ui-design" class="content-section">
-                    <h2>UI Design</h2>
-                    <p>With a clear mission to support student-athletes, I approached the design phase of myNILpay with
-                        focus and determination, ensuring the product was simple, secure, and NCAA-compliant. Our
-                        primary goal was to create a seamless fan-to-athlete payment experience that built trust while
-                        remaining easy to use. <br>
-                        I started by designing a smooth onboarding process for athletes, using .edu verification to
-                        ensure authenticity and compliance. Next, I focused on simplifying the search and payment flow,
-                        making it easy for fans to find and support any of the 500,000 preloaded athletes. To meet NCAA
-                        requirements, I designed digital art receipts that doubled as both proof of payment and a unique
-                        fan keepsake, ensuring every transaction felt personal and transparent. <br>
-                        As the platform gained traction, over 450 athletes successfully received direct payments, and
-                        the app attracted attention from high-profile supporters like Ice Cube, Andy Dalton, and Nancy
-                        Lieberman. The project also achieved remarkable visibility, being recognized in national NIL
-                        discussions on Capitol Hill within weeks of launch. With the foundations of trust, compliance,
-                        and usability firmly in place, my design work helped democratize NIL, giving both top-tier and
-                        lesser-known athletes the opportunity to earn fairly while empowering fans to directly support
-                        the players they admire.</p>
-                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778149007/murarli-krishna-portfolio/mynilpay/frame-3.png"
-                        alt="myNILpay Dashboard Mockup" class="content-image">
 
+                <section id="iterations" class="content-section">
+                    <h2>Iterations</h2>
+                    <p>The design was refined to improve usability and clarity based on internal reviews and usability
+                        considerations.</p>
+
+                    <ul>
+                        <li>Simplified onboarding steps to reduce friction</li>
+                        <li>Improved payment flow to minimize drop-offs</li>
+                        <li>Enhanced visibility of key actions and buttons</li>
+                        <li>Refined content and labels for better clarity</li>
+                    </ul>
+                </section>
+                <section id="impact" class="content-section">
+                    <h2>Impact</h2>
+                    <p>The final design successfully improved both user experience and business outcomes.</p>
+
+                    <ul>
+                        <li>Enabled seamless fan-to-athlete transactions</li>
+                        <li>Increased trust through clear and transparent design</li>
+                        <li>Simplified onboarding for athletes</li>
+                        <li>Improved overall engagement and usability</li>
+                        <li>Supported over 450+ athletes receiving real payments</li>
+                    </ul>
+                </section>
+                <section class="content-section">
+
+                    <img src="/assets/mynilpay/last-frame.png" alt="" style="width: 100%; height: 100%;">
+                </section>
+
+                <section id="why-this-matters" class="content-section">
+                    <h2>Why This Matters</h2>
+                    <p>myNILpay plays a critical role in democratizing opportunities for student athletes by allowing
+                        them to receive direct support from fans. The platform not only simplifies transactions but also
+                        creates a transparent and meaningful connection between users.</p>
+                    <p>By combining compliance, trust, and usability, this solution helps build a fair and scalable
+                        ecosystem for both athletes and fans.</p>
                 </section>
                 <section id="my-contribution" class="content-section">
                     <h2>My Contribution</h2>
                     <ul>
-                        <li>Talked with athletes and fans to learn what they needed and what problems they faced.</li>
-                        <li>Planned how users move through the app from landing → search → payment → receipt.</li>
-                        <li>Created wireframes and prototypes for main flows like athlete signup, fan search, payments,
-                            and receipts.</li>
-                        <li>Worked with the legal team to make sure the design was clear, trustworthy, and
-                            NCAA-compliant.</li>
-                        <li>Improved the design after testing with users making wording simpler, flows smoother, and
-                            trust signals stronger.</li>
-                        <li>Worked closely with developers so the final product matched the design and worked well on
-                            all devices.</li>
+                        <li>UX & UI Design</li>
+                        <li>User Flows & Wireframes</li>
+                        <li>High-Fidelity Design</li>
+                        <li>Design System</li>
+                        <li>Developer Collaboration</li>
+                        <li>Usability Improvements</li>
+                        <li>Mobile & Web Experience</li>
                     </ul>
                 </section>
 
-
-
             </main>
         </div>
-        <p style="font-style: italic; font-weight: bold;">Thank you for reading my case study on myNILpay! This
-            project taught me
-            how to balance user needs with trust and compliance, and I’d love to hear your feedback to keep
-            improving as a designer.
-        </p>
 
     </div>
+    <img src="/assets/mynilpay/last.png" style="width: 100%; height: 100%; margin-top: -100px;" alt="">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.content-section');
