@@ -14,8 +14,10 @@ cloudinary.config({
 const project = process.argv[2];
 // Adjust this path if your root assets folder is located elsewhere
 const assetsDir = path.join(__dirname, '..', 'assets', project);
-// Define where your code lives (e.g., 'src', 'app', or root directory components)
-const sourceCodePattern = path.join(__dirname, '..', '**/*.{js,jsx,ts,tsx,html}');
+
+// globSync requires forward slashes even on Windows — path.join produces backslashes
+const projectRoot = path.join(__dirname, '..').replace(/\\/g, '/');
+const sourceCodePattern = `${projectRoot}/**/*.{js,jsx,ts,tsx,html}`;
 
 if (!project) {
   console.log('Usage: node scripts/upload-assets.js <project-folder>');
@@ -61,7 +63,6 @@ async function syncAssetsToCloud() {
       ? `murali-krishna-portfolio/${project}/${folderPath}`
       : `murali-krishna-portfolio/${project}`;
 
-    // Use the filename without extension as the public ID to check existence easily
     const fileBaseName = path.parse(filename).name;
     const expectedPublicId = `${cloudFolder}/${fileBaseName}`;
 
@@ -73,35 +74,38 @@ async function syncAssetsToCloud() {
       secureUrl = existing.secure_url;
       console.log(`⚡ Already on Cloudinary: ${relativePath}`);
     } catch (err) {
-      // If it doesn't exist (returns 404), upload it
       try {
         console.log(`▲ Uploading: ${relativePath}...`);
         const result = await cloudinary.uploader.upload(fullPath, {
           folder: cloudFolder,
           resource_type: 'image',
           use_filename: true,
-          unique_filename: false, // Ensures consistent naming
+          unique_filename: false,
           overwrite: true
         });
         secureUrl = result.secure_url;
         console.log(`✓ Uploaded successfully`);
       } catch (uploadErr) {
         console.error(`✗ Failed to upload ${relativePath}: ${uploadErr.message}`);
-        continue; // Skip code replacement if upload fails
+        continue;
       }
     }
 
+    // Normalise to forward slashes (important on Windows)
+    const normalisedRelative = relativePath.replace(/\\/g, '/');
+
     successfulUploads.push({
-      localPath: relativePath,
+      // The full logical path as it typically appears in source code, e.g.
+      //   assets/my-project/images/hero.png
+      logicalPath: `assets/${project}/${normalisedRelative}`,
       absolutePath: fullPath,
+      localRelative: normalisedRelative,
       cloudUrl: secureUrl
     });
   }
 
   // 2. Scan and Update Codebase
   console.log('\n--- Scanning Codebase for References ---\n');
-
-  // Exclude node_modules and build directories from scan
   const sourceFiles = globSync(sourceCodePattern, {
     ignore: ['**/node_modules/**', '**/.next/**', '**/dist/**', '**/build/**']
   });
@@ -111,50 +115,75 @@ async function syncAssetsToCloud() {
   for (const file of sourceFiles) {
     let content = fs.readFileSync(file, 'utf8');
     let fileModified = false;
+    let replacedInFile = 0;
 
-    for (const { localPath, cloudUrl } of successfulUploads) {
-      // Standardize path formats for regex matching
-      const cleanLocalPath = localPath.replace(/\\/g, '/');
+    for (const { logicalPath, cloudUrl } of successfulUploads) {
+      const escapedLogical = logicalPath.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
-      // Matches typical patterns: /assets/project/image.png OR assets/project/image.png OR ../assets/project/image.png
-      const escapedPath = cleanLocalPath.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-      const regex = new RegExp(`['"\`].*?assets/${project}/${escapedPath}['"\`]`, 'g');
+      /*
+       * Match every real-world prefix variant before "assets/":
+       *
+       *   "/assets/..."          → leading slash  (HTML src="/assets/...")
+       *   "assets/..."           → no prefix
+       *   "./assets/..."         → same-dir relative
+       *   "../assets/..."        → parent-dir relative
+       *   "../../assets/..."     → grandparent relative
+       *   "@/assets/..."         → vite/webpack alias
+       *
+       * (?:(?:\.{1,2}\/)+|\/|@\/)? covers /, ./, ../, ../../, @/
+       */
+      const regexStr = `(["'\`])(?:(?:\\.{1,2}\\/)+|\\/|@\\/)?${escapedLogical}(["'\`])`;
+      const regex = new RegExp(regexStr, 'g');
 
-      const matches = content.match(regex);
-      if (matches) {
-        // Replace the whole path string inside the quotes with the new Cloudinary URL
-        content = content.replace(regex, `"${cloudUrl}"`);
-        totalReplaced += matches.length;
+
+      if (regex.test(content)) {
+        regex.lastIndex = 0;
+
+        let hitCount = 0;
+        content = content.replace(regex, (match, openQuote, closeQuote) => {
+          hitCount++;
+          const q = openQuote === closeQuote ? openQuote : '"';
+          return `${q}${cloudUrl}${q}`;
+        });
+
+        totalReplaced += hitCount;
+        replacedInFile += hitCount;
         fileModified = true;
+        console.log(`    ✓ Replaced ${hitCount} reference(s) to ${logicalPath} in ${path.basename(file)}`);
       }
     }
 
     if (fileModified) {
       fs.writeFileSync(file, content, 'utf8');
-      console.log(`✓ Updated references in: ${path.relative(process.cwd(), file)}`);
+      console.log(`✓ Updated: ${path.relative(process.cwd(), file)}`);
     }
   }
 
-  // 3. Agentic Cleanup: Delete the local files only after successful URL mapping
+  // 3. Agentic Cleanup: Delete local files only after successful URL mapping
   if (totalReplaced === 0) {
-    console.log('\n⚠️ No URLs were updated in the codebase. Keeping local assets for safety.');
-    console.log('🎉 Workflow Complete! (0 URLs replaced)');
+    console.log('\n⚠️  No source-code references were found/replaced.');
+    console.log('    Keeping local assets for safety.');
+    console.log('\n💡 Common reasons:');
+    console.log('   • Your code references the file with a different casing or alias');
+    console.log('   • The import uses a webpack/vite alias (e.g. @/assets/…) — check logicalPath above');
+    console.log('   • The source files are outside the glob pattern');
+    console.log('\n🎉 Upload complete. (0 URLs replaced in codebase)');
     return;
   }
 
   console.log('\n--- Cleaning Up Local Assets ---\n');
-  for (const { absolutePath, localPath } of successfulUploads) {
+  for (const { absolutePath, localRelative } of successfulUploads) {
     try {
       if (fs.existsSync(absolutePath)) {
         fs.unlinkSync(absolutePath);
-        console.log(`🚮 Deleted local asset: ${localPath}`);
+        console.log(`🚮 Deleted local asset: ${localRelative}`);
       }
     } catch (cleanErr) {
-      console.error(`⚠️ Could not delete ${localPath}:`, cleanErr.message);
+      console.error(`⚠️  Could not delete ${localRelative}:`, cleanErr.message);
     }
   }
 
-  console.log(`\n🎉 Workflow Complete! Replaced ${totalReplaced} URLs in codebase.`);
+  console.log(`\n🎉 Workflow Complete! Replaced ${totalReplaced} URL(s) in the codebase.`);
 }
 
 syncAssetsToCloud();
