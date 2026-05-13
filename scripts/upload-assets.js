@@ -136,6 +136,12 @@ async function syncAssetsToCloud() {
   }
 
   // 3. Agentic Cleanup: Delete the local files only after successful URL mapping
+  if (totalReplaced === 0) {
+    console.log('\n⚠️ No URLs were updated in the codebase. Keeping local assets for safety.');
+    console.log('🎉 Workflow Complete! (0 URLs replaced)');
+    return;
+  }
+
   console.log('\n--- Cleaning Up Local Assets ---\n');
   for (const { absolutePath, localPath } of successfulUploads) {
     try {
