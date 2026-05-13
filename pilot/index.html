@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyNILpay Case Study</title>
+    <title>Pilot</title>
     <style>
         /* --- CSS VARIABLES (Update these with exact Figma values) --- */
         :root {
@@ -601,7 +601,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 42px 133px;
-            gap: 40px;
+            gap: 60px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
@@ -629,7 +629,9 @@
 
         /* Right Image Section */
         .db-mockup {
-            flex-shrink: 0;
+            width: 100%;
+            max-width: 500px;
+            flex-shrink: 1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -637,12 +639,13 @@
 
         .db-mockup-img {
             width: 100%;
-            max-width: 274px;
-            height: auto;
+            height: 600px;
             object-fit: contain;
             display: block;
+            margin: 0 auto;
             filter: drop-shadow(0px 20px 40px rgba(0, 0, 0, 0.2));
         }
+
 
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
@@ -656,6 +659,10 @@
 
             .db-description {
                 font-size: 20px;
+            }
+
+            .db-mockup-img {
+                height: 500px;
             }
         }
 
@@ -671,12 +678,12 @@
                 align-items: center;
             }
 
-            .db-mockup-img {
-                max-width: 240px;
+            .db-mockup {
+                max-width: 100%;
             }
 
-            .db-mockup-img-3 {
-                max-width: 240px;
+            .db-mockup-img {
+                height: 450px;
             }
         }
 
@@ -695,11 +702,7 @@
             }
 
             .db-mockup-img {
-                max-width: 200px;
-            }
-
-            .db-mockup-img-3 {
-                max-width: 280px;
+                height: 350px;
             }
         }
     </style>
@@ -731,7 +734,7 @@
 
         <!-- Hero Image Placeholder -->
         <div class="hero-image-section">
-            <img src="/assets/pilot/frame1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654025/murali-krishna-portfolio/pilot/frame1.png" style="width: 100%; height: 100%; object-fit: cover;">
             <!-- Add your exported Image tag here (e.g., <img src="hero.png" style="width: 100%; height: 100%; object-fit: cover;">) -->
         </div>
 
@@ -837,7 +840,7 @@
                     <p>These challenges create stress, low confidence, and inconsistent learning experiences for users.
                         This is not just a usability issue it is a trust, safety, and structure problem where the lack
                         of transparency and guidance directly impacts learner confidence and learning outcomes.</p>
-                    <img src="/assets/pilot/frame2.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
+                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654033/murali-krishna-portfolio/pilot/frame2.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
 
                 </section>
                 <section id="project-goal" class="content-section">
@@ -861,9 +864,9 @@
                     <p>The platform was designed to support users with different learning styles, schedules, and comfort
                         levels.</p>
                     <div class="three-col-grid">
-                        <img src="/assets/pilot/frame3.png" alt="" style="width: 100%; height: auto;">
-                        <img src="/assets/pilot/frame4.png" alt="" style="width: 100%; height: auto;">
-                        <img src="/assets/pilot/frame5.png" alt="" style="width: 100%; height: auto;">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654034/murali-krishna-portfolio/pilot/frame3.png" alt="" style="width: 100%; height: auto;">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654035/murali-krishna-portfolio/pilot/frame4.png" alt="" style="width: 100%; height: auto;">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654036/murali-krishna-portfolio/pilot/frame5.png" alt="" style="width: 100%; height: auto;">
                     </div>
 
                 </section>
@@ -882,7 +885,7 @@
                         <li style="font-weight: 700;">receive structured learning guidance</li>
                         <li style="font-weight: 700;">reduce confusion around licensing and training</li>
                     </ul>
-                    <img src="/assets/pilot/frame6.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
+                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654037/murali-krishna-portfolio/pilot/frame6.png" style="width: 100%; height: auto; border-radius: 8px;" alt="">
 
                 </section>
                 <section id="design-decisions" class="content-section">
@@ -924,7 +927,7 @@
                 <br>
                 <section id="user-flow" class="content-section">
                     <h2>User Flow</h2>
-                    <img src="/assets/pilot/frame7.png" alt="" style="width: 100%; height: auto; border-radius: 8px;">
+                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654038/murali-krishna-portfolio/pilot/frame7.png" alt="" style="width: 100%; height: auto; border-radius: 8px;">
                 </section>
 
                 <section id="final-solution" class="content-section">
@@ -939,13 +942,13 @@
                         </div>
 
                         <div class="db-mockup">
-                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-1.png"
+                            <img class="db-mockup-img" src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654040/murali-krishna-portfolio/pilot/mockup-phone-1.png"
                                 alt="Driving App Interface Mockup">
                         </div>
                     </div>
-                    <div class="db-container" style="gap: 120px;">
+                    <div class="db-container">
                         <div class="db-mockup">
-                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-2.png"
+                            <img class="db-mockup-img" src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654041/murali-krishna-portfolio/pilot/mockup-phone-2.png"
                                 alt="Driving App Interface Mockup">
                         </div>
                         <div class="db-content">
@@ -957,9 +960,24 @@
 
 
                     </div>
-                    <div class="db-container" style="gap: 120px;">
+                    <div class="db-container">
+
+                        <div class="db-content">
+                            <h1 class="db-title">Book Driving Classes</h1>
+                            <p class="db-description">Easily schedule driving sessions with verified instructors
+                                through a simple and structured booking experience designed for convenience and
+                                accessibility.</p>
+                        </div>
                         <div class="db-mockup">
-                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-3.png"
+                            <img class="db-mockup-img" src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654042/murali-krishna-portfolio/pilot/mockup-phone-3.png"
+                                alt="Driving App Interface Mockup">
+                        </div>
+
+
+                    </div>
+                    <div class="db-container">
+                        <div class="db-mockup">
+                            <img class="db-mockup-img" src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654043/murali-krishna-portfolio/pilot/mockup-phone-4.png"
                                 alt="Driving App Interface Mockup">
                         </div>
                         <div class="db-content">
@@ -971,27 +989,13 @@
 
 
                     </div>
-                    <div class="db-container" style="gap: 120px;">
+                    <div class="db-container">
                         <div class="db-mockup">
-                            <img class="db-mockup-img" src="/assets/pilot/mockup-phone-4.png"
+                            <img class="db-mockup-img" src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654043/murali-krishna-portfolio/pilot/mockup-phone-4.png"
                                 alt="Driving App Interface Mockup">
                         </div>
                         <div class="db-content">
                             <h1 class="db-title">Book Driving Classes</h1>
-                            <p class="db-description">Easily schedule driving sessions with verified instructors
-                                through a simple and structured booking experience designed for convenience and
-                                accessibility.</p>
-                        </div>
-
-
-                    </div>
-                    <div class="db-container" style="gap: 120px;">
-                        <div class="db-mockup">
-                            <img class="db-mockup-img-3" style="" src="/assets/pilot/mockup-phone-4.png"
-                                alt="Driving App Interface Mockup">
-                        </div>
-                        <div class="db-content">
-                            <h1 class="db-title">Book Driving Classess</h1>
                             <p class="db-description">Easily schedule driving sessions with verified instructors
                                 through a simple and structured booking experience designed for convenience and
                                 accessibility.</p>
@@ -1003,11 +1007,11 @@
                 </section>
                 <section id="high-fidelity" class="content-section">
                     <h2>Hight Fidelity</h2>
-                    <img src="/assets/pilot/frame-8.png" style="width: 100%; height: 100%; object-fit: contain;" alt="">
+                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654024/murali-krishna-portfolio/pilot/frame-8.png" style="width: 100%; height: 100%; object-fit: contain;" alt="">
                 </section>
                 <section class="content-section">
 
-                    <img src="/assets/mynilpay/last-frame.png" alt="" style="width: 100%; height: 100%;">
+                    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653289/murali-krishna-portfolio/mynilpay/sdvxcjxtj5serdxskuoo.png" alt="" style="width: 100%; height: 100%;">
                 </section>
 
                 <section id="why-this-matters" class="content-section">
@@ -1040,14 +1044,14 @@
                 </section>
                 <section class="content-section">
                     <div class="three-col-grid">
-                        <img src="/assets/pilot/frame9.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/frame10.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/frame11.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654039/murali-krishna-portfolio/pilot/frame9.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654026/murali-krishna-portfolio/pilot/frame10.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654027/murali-krishna-portfolio/pilot/frame11.png" style="width: 100%;" alt="">
                     </div>
                     <div class="three-col-grid" style="margin-top: 10px;">
-                        <img src="/assets/pilot/frame12.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/frame13.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/frame14.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654028/murali-krishna-portfolio/pilot/frame12.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654029/murali-krishna-portfolio/pilot/frame13.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654030/murali-krishna-portfolio/pilot/frame14.png" style="width: 100%;" alt="">
                     </div>
                 </section>
 
@@ -1071,15 +1075,15 @@
                         driving learning journey while improving trust, usability, and accessibility for modern
                         learners.</p>
                     <div class="three-col-grid">
-                        <img src="/assets/pilot/contributions/img1.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/contributions/img2.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/contributions/img3.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653711/murali-krishna-portfolio/pilot/contributions/fpkdi32firwdsngizrsk.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653712/murali-krishna-portfolio/pilot/contributions/fmxpatupmakqiyhv5pnq.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653713/murali-krishna-portfolio/pilot/contributions/u9dzdiwlqdpr2fkoei4d.png" style="width: 100%;" alt="">
 
                     </div>
                     <div class="three-col-grid" style="margin-top: 10px;">
-                        <img src="/assets/pilot/contributions/img4.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/contributions/img5.png" style="width: 100%;" alt="">
-                        <img src="/assets/pilot/contributions/img6.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653714/murali-krishna-portfolio/pilot/contributions/nxnrdbvsmk2ixzuvywy4.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653715/murali-krishna-portfolio/pilot/contributions/in66eobjfsutq8znihky.png" style="width: 100%;" alt="">
+                        <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778653716/murali-krishna-portfolio/pilot/contributions/ubkula53cbvoyufkytlh.png" style="width: 100%;" alt="">
 
                     </div>
                 </section>
@@ -1104,7 +1108,7 @@
         </div>
 
     </div>
-    <img src="/assets/pilot/frame15.png" style="width: 100%; height: 100%; margin-top: -100px;" alt="">
+    <img src="https://res.cloudinary.com/dodnfkmjq/image/upload/v1778654031/murali-krishna-portfolio/pilot/frame15.png" style="width: 100%; height: 100%; margin-top: -100px;" alt="">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.content-section');
