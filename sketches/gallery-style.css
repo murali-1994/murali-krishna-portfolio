@@ -1,0 +1,413 @@
+/* ========================================
+   Photography & Sketches Gallery
+   Masonry Layout - Editorial Aesthetic
+   ======================================== */
+
+/* CSS Custom Properties */
+:root {
+    /* Fonts */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-breadcrumb: 14px;
+    --font-size-h1: 48px;
+    --font-size-read-more: 12px;
+    --font-size-labels: 16px;
+    --font-size-values: 18px;
+    --font-size-availability-title: 20px;
+
+    /* Colors */
+    --color-text-dark: #111111;
+    --color-text-gray: #888888;
+    --color-text-light: #c0c0c0;
+    /* myNILpay light text in title */
+    --color-bg-white: #ffffff;
+    --color-bg-purple: #5c3cbe;
+    /* Hero placeholder color */
+    --color-bg-light-box: #f4f4f5;
+    /* Availability section background */
+    --color-line: #d1d1d1;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- BREADCRUMB --- */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-breadcrumb);
+    margin-bottom: 40px;
+}
+
+.breadcrumb .line {
+    width: 120px;
+    height: 1px;
+    background-color: var(--color-line);
+    margin-right: 20px;
+}
+
+.breadcrumb .current {
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.breadcrumb .separator {
+    margin: 0 8px;
+    color: var(--color-text-gray);
+}
+
+.breadcrumb .category {
+    color: var(--color-text-gray);
+    font-weight: 400;
+}
+
+
+/* Gallery Container */
+.gallery-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 60px;
+
+}
+
+/* Gallery Header - Editorial Typography */
+.gallery-header {
+    text-align: left;
+    margin-bottom: 32px;
+    padding-left: 12px;
+    border-left: 1px solid var(--accent);
+}
+
+.gallery-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.gallery-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* Masonry Grid Container */
+.gallery-grid {
+    column-count: 3;
+    column-gap: 16px;
+    padding: 0 8px;
+}
+
+/* Masonry Items */
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.4s var(--transition-smooth);
+}
+
+.masonry-item:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.masonry-item img {
+    width: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.6s var(--transition-smooth);
+}
+
+.masonry-item.loaded img {
+    opacity: 1;
+}
+
+/* Skeleton Loading */
+.skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            var(--bg-secondary) 0%,
+            #1a1a1a 50%,
+            var(--bg-secondary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.masonry-item.loaded .skeleton {
+    display: none;
+}
+
+/* Item Overlay */
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            transparent 50%,
+            rgba(0, 0, 0, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    pointer-events: none;
+}
+
+.image-num {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+}
+
+.masonry-item:hover .item-overlay {
+    opacity: 1;
+}
+
+.masonry-item:hover .image-num {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Lightbox Modal
+   ======================================== */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    cursor: zoom-out;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 92vw;
+    max-height: 88vh;
+    z-index: 1;
+    transform: scale(0.92) translateY(30px);
+    opacity: 0;
+    transition: transform 0.5s var(--transition-smooth), opacity 0.4s ease;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: -44px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .gallery-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        padding: 60px 20px 80px;
+    }
+
+    .gallery-header {
+        margin-bottom: 48px;
+        padding-left: 12px;
+    }
+
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 16px;
+        padding: 0 8px;
+    }
+
+    .masonry-item {
+        margin-bottom: 16px;
+    }
+
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+    }
+
+    .lightbox-content {
+        max-width: 98vw;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        padding: 40px 12px 60px;
+    }
+
+    .gallery-header {
+        border-left-width: 1px;
+        margin-bottom: 36px;
+    }
+
+    .gallery-grid {
+        column-count: 1;
+        column-gap: 12px;
+        padding: 0 4px;
+    }
+
+    .masonry-item {
+        margin-bottom: 12px;
+        border-radius: 4px;
+    }
+
+    .lightbox-counter {
+        bottom: -36px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ========================================
+   Reduced Motion & Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .masonry-item,
+    .masonry-item img,
+    .item-overlay,
+    .image-num,
+    .skeleton {
+        transition: none;
+        animation: none;
+    }
+
+    .masonry-item {
+        opacity: 1;
+        transform: none;
+    }
+
+    .lightbox-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Focus States */
+.masonry-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.lightbox-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* High DPI Optimization */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .gallery-container {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
