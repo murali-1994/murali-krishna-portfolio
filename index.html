@@ -1497,6 +1497,255 @@
         }
     </style>
 
+    <style>
+        .contact-section {
+            position: relative;
+            padding: 100px 0 80px;
+            overflow: hidden;
+        }
+
+        .contact-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(33.82% 46.83% at 50% 0%, rgba(126, 61, 255, 0.12) 0%, rgba(126, 61, 255, 0) 100%), #0B011D;
+            z-index: 0;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-top-nav {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .contact-heading {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin: 0 0 32px;
+            color: #FFFFFF;
+        }
+
+        .contact-send-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-bottom: 80px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-send-btn:hover {
+            opacity: 0.8;
+        }
+
+        .contact-send-btn .btn-text {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .contact-send-btn .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+
+        .contact-cards-row {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-label {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            color: #FFFFFF;
+        }
+
+        .contact-value {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .contact-cards-row {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .contact-divider {
+                width: 60px;
+                height: 1px;
+            }
+
+            .contact-heading {
+                font-size: 48px;
+            }
+
+            .contact-value {
+                font-size: 18px;
+            }
+        }
+
+        .contact-card:hover .contact-arrow svg {
+            stroke: #FFFFFF;
+        }
+
+        .contact-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 48px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22C55E;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
+
+        .status-text {
+            font-family: 'Inter V', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media screen and (max-width: 600px) {
+            .contact-section {
+                padding: 60px 0 40px;
+            }
+
+            .contact-heading {
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .contact-subheading {
+                font-size: 14px;
+                margin-bottom: 32px;
+            }
+
+            .contact-card {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+            }
+
+            .contact-label {
+                font-size: 14px;
+            }
+
+            .contact-value {
+                font-size: 12px;
+            }
+
+            .contact-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            .contact-status {
+                margin-top: 32px;
+            }
+
+            .contact-cards-row {
+                flex-direction: row;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .contact-card {
+                flex-direction: row;
+                padding: 14px 12px;
+                min-width: 0;
+                flex: 1;
+                max-width: 160px;
+            }
+
+            .contact-info {
+                align-items: flex-start;
+            }
+
+            .contact-value {
+                font-size: 10px;
+            }
+        }
+    </style>
+
 
     <style type="text/css">
         body {
@@ -1921,6 +2170,9 @@
             </a>
             <a href="#praise" class="nav-link w-inline-block">
                 <p class="nav-text">Praise</p>
+            </a>
+            <a href="#contact" class="nav-link w-inline-block">
+                <p class="nav-text">Contact</p>
             </a>
 
 
@@ -2866,63 +3118,9 @@
                                             </div><img src="/assets/work-1.png" alt="" class="thumbnail-img" />
                                         </div>
                                         <div class="project-name-div">
-
-
-
                                             <div class="project-name-top">
                                                 <h5 class="project-title">MyNILpay Case Study</h5>
-                                                <div class="date-div">
-                                                    <div class="date-pill-css w-embed">
-                                                        <style>
-                                                            .date-div {
-                                                                box-sizing: border-box;
-                                                                /* Auto layout */
-                                                                display: flex;
-                                                                flex-direction: row;
-                                                                align-items: flex-start;
-                                                                padding: 4px 14px;
-                                                                gap: 8px;
-                                                                width: 62px;
-                                                                height: 32px;
-                                                                background: rgba(255, 255, 255, 0.04);
-                                                                border: 1px solid rgba(255, 255, 255, 0.1);
-                                                                box-shadow: inset 0px 0px 4px 2px rgba(168, 128, 255, 0.1);
-                                                                border-radius: 999px;
-                                                            }
 
-                                                            .date-p {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 14px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 171% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Text */
-                                                                background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
-                                                                -webkit-background-clip: text;
-                                                                -webkit-text-fill-color: transparent;
-                                                                background-clip: text;
-                                                                text-fill-color: transparent;
-                                                            }
-
-                                                            .project-description {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 16px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 150% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Sub Paragraph */
-                                                                color: #74698C;
-                                                            }
-                                                        </style>
-                                                    </div>
-                                                    <p class="date-p">2026</p>
-                                                </div>
                                             </div>
 
                                             <p class="project-description">Crafting a clean, sleek and interactive sales
@@ -3067,58 +3265,7 @@
                                         <div class="project-name-div">
                                             <div class="project-name-top">
                                                 <h5 class="project-title">Style Makers</h5>
-                                                <div class="date-div">
-                                                    <div class="date-pill-css w-embed">
-                                                        <style>
-                                                            .date-div {
-                                                                box-sizing: border-box;
-                                                                /* Auto layout */
-                                                                display: flex;
-                                                                flex-direction: row;
-                                                                align-items: flex-start;
-                                                                padding: 4px 14px;
-                                                                gap: 8px;
-                                                                width: 62px;
-                                                                height: 32px;
-                                                                background: rgba(255, 255, 255, 0.04);
-                                                                border: 1px solid rgba(255, 255, 255, 0.1);
-                                                                box-shadow: inset 0px 0px 4px 2px rgba(168, 128, 255, 0.1);
-                                                                border-radius: 999px;
-                                                            }
 
-                                                            .date-p {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 14px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 171% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Text */
-                                                                background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
-                                                                -webkit-background-clip: text;
-                                                                -webkit-text-fill-color: transparent;
-                                                                background-clip: text;
-                                                                text-fill-color: transparent;
-                                                            }
-
-                                                            .project-description {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 16px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 150% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Sub Paragraph */
-                                                                color: #74698C;
-                                                            }
-                                                        </style>
-                                                    </div>
-                                                    <p class="date-p">2026</p>
-                                                </div>
                                             </div>
                                             <p class="project-description">Creating a polished, academic website for the
                                                 youngest Head S&amp;C Coach the NBA has ever seen.</p>
@@ -3272,58 +3419,6 @@
                                         <div class="project-name-div">
                                             <div class="project-name-top">
                                                 <h5 class="project-title">Pilot</h5>
-                                                <div class="date-div">
-                                                    <div class="date-pill-css w-embed">
-                                                        <style>
-                                                            .date-div {
-                                                                box-sizing: border-box;
-                                                                /* Auto layout */
-                                                                display: flex;
-                                                                flex-direction: row;
-                                                                align-items: flex-start;
-                                                                padding: 4px 14px;
-                                                                gap: 8px;
-                                                                width: 62px;
-                                                                height: 32px;
-                                                                background: rgba(255, 255, 255, 0.04);
-                                                                border: 1px solid rgba(255, 255, 255, 0.1);
-                                                                box-shadow: inset 0px 0px 4px 2px rgba(168, 128, 255, 0.1);
-                                                                border-radius: 999px;
-                                                            }
-
-                                                            .date-p {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 14px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 171% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Text */
-                                                                background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
-                                                                -webkit-background-clip: text;
-                                                                -webkit-text-fill-color: transparent;
-                                                                background-clip: text;
-                                                                text-fill-color: transparent;
-                                                            }
-
-                                                            .project-description {
-                                                                font-family: 'Inter V';
-                                                                font-style: normal;
-                                                                font-weight: 400;
-                                                                font-size: 16px;
-                                                                line-height: 24px;
-                                                                /* identical to box height, or 150% */
-                                                                letter-spacing: -0.01em;
-                                                                font-feature-settings: 'cv06' on, 'calt' off, 'liga' off;
-                                                                /* Sub Paragraph */
-                                                                color: #74698C;
-                                                            }
-                                                        </style>
-                                                    </div>
-                                                    <p class="date-p">2026</p>
-                                                </div>
                                             </div>
                                             <p class="project-description">Developing a professional yet friendly
                                                 portfolio
@@ -5691,6 +5786,31 @@
                     </div>
                 </div>
             </div> -->
+            <section id="contact" class="contact-section">
+                <div class="contact-bg"></div>
+                <div class="contact-content">
+
+                    <h2 class="contact-heading">Get in touch!</h2>
+
+                    <a href="mailto:muralikrishnaofficial7@gmail.com" class="contact-send-btn">
+                        <span class="btn-text">SEND MESSAGE</span>
+                        <span class="btn-icon">↓</span>
+                    </a>
+
+                    <div class="contact-cards-row">
+                        <div class="contact-info-block">
+                            <span class="contact-label">Email id:-</span>
+                            <a href="mailto:muralikrishnaofficial7@gmail.com"
+                                class="contact-value">muralikrishnaofficial7@gmail.com</a>
+                        </div>
+                        <div class="contact-divider"></div>
+                        <div class="contact-info-block">
+                            <span class="contact-label">Phone number:-</span>
+                            <a href="tel:+919182819699" class="contact-value">+91-9182819699</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <div class="footer">
                 <p class="copywright-text">© 2026 Murali Krishna. All rights reserved.</p>
                 <div class="footer-flex-horizontal"><a href="/privacy" target="_blank"
