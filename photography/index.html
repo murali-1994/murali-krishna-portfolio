@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Gallery</title>
+    <link rel="stylesheet" href="photography-style.css">
+</head>
+
+<body>
+    <main class="gallery-container">
+        <div class="breadcrumb">
+            <div class="line"></div>
+            <a href="#" onclick="history.back(); return false;" style="text-decoration: none;">
+                <span class="current">Home page</span>
+            </a> <span class="separator">/</span>
+            <span class="category">Photography Gallery</span>
+        </div>
+
+
+
+
+        <header class="gallery-header">
+            <!-- <h1 class="gallery-title">sketches & Sketches</h1> -->
+            <!-- <p class="gallery-subtitle">A collection of visual moments</p> -->
+        </header>
+
+        <section class="gallery-grid" id="galleryGrid">
+            <!-- Images populated by JavaScript -->
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Full size preview">
+            <span class="lightbox-counter" id="lightboxCounter"></span>
+        </div>
+    </div>
+
+    <script src="./photography-script.js"></script>
+</body>
+
+</html>
