@@ -1624,6 +1624,72 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        .contact-socials-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 48px;
+            width: 100%;
+        }
+
+        .contact-social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .contact-social-btn::before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 1;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border-radius: 50%;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(168, 128, 255, 0.5), rgba(168, 128, 255, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-social-btn:hover {
+            color: #FFFFFF;
+            border-color: rgba(168, 128, 255, 0.4);
+            background: rgba(168, 128, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(126, 61, 255, 0.25), inset 0 0 12px rgba(168, 128, 255, 0.15);
+        }
+
+        .contact-social-btn:hover::before {
+            opacity: 1;
+        }
+
+        .contact-social-btn .social-icon {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-social-btn:hover .social-icon {
+            transform: scale(1.1);
+        }
+
         @media (max-width: 768px) {
             .contact-cards-row {
                 flex-direction: column;
@@ -1641,6 +1707,21 @@
 
             .contact-value {
                 font-size: 18px;
+            }
+
+            .contact-socials-row {
+                margin-top: 36px;
+                gap: 20px;
+            }
+
+            .contact-social-btn {
+                width: 46px;
+                height: 46px;
+            }
+
+            .contact-social-btn .social-icon {
+                width: 18px;
+                height: 18px;
             }
         }
 
@@ -5553,6 +5634,38 @@
                             <span class="contact-label">Phone number:-</span>
                             <a href="tel:+919182819699" class="contact-value">+91-9104103109</a>
                         </div>
+                    </div>
+
+                    <div class="contact-socials-row">
+                        <a href="https://www.linkedin.com/in/murali-krishna-adapa/" target="_blank"
+                            class="contact-social-btn" title="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="social-icon">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/Muralikrihna001" target="_blank" class="contact-social-btn"
+                            title="X (Twitter)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="social-icon">
+                                <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                                <path d="M20 4L4 20"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.behance.net/Murali-Krishna-Adapa" target="_blank"
+                            class="contact-social-btn" title="Behance">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"
+                                fill="currentColor" class="social-icon" style="stroke: none;">
+                                <path
+                                    d="M4.654 3c.461 0 .887.035 1.278.14.39.07.711.216.996.391s.497.426.641.747c.14.32.216.711.216 1.137 0 .496-.106.922-.356 1.242-.215.32-.566.606-.997.817.606.176 1.067.496 1.348.922s.461.957.461 1.563c0 .496-.105.922-.285 1.278a2.3 2.3 0 0 1-.782.887c-.32.215-.711.39-1.137.496a5.3 5.3 0 0 1-1.278.176L0 12.803V3zm-.285 3.978c.39 0 .71-.105.957-.285.246-.18.355-.497.355-.887 0-.216-.035-.426-.105-.567a1 1 0 0 0-.32-.355 1.8 1.8 0 0 0-.461-.176c-.176-.035-.356-.035-.567-.035H2.17v2.31c0-.005 2.2-.005 2.2-.005zm.105 4.193c.215 0 .426-.035.606-.07.176-.035.356-.106.496-.216s.25-.215.356-.39c.07-.176.14-.391.14-.641 0-.496-.14-.852-.426-1.102-.285-.215-.676-.32-1.137-.32H2.17v2.734h2.305zm6.858-.035q.428.427 1.278.426c.39 0 .746-.106 1.032-.286q.426-.32.53-.64h1.74c-.286.851-.712 1.457-1.278 1.848-.566.355-1.243.566-2.06.566a4.1 4.1 0 0 1-1.527-.285 2.8 2.8 0 0 1-1.137-.782 2.85 2.85 0 0 1-.712-1.172c-.175-.461-.25-.957-.25-1.528 0-.531.07-1.032.25-1.493.18-.46.426-.852.747-1.207.32-.32.711-.606 1.137-.782a4 4 0 0 1 1.493-.285c.606 0 1.137.105 1.598.355.46.25.817.532 1.102.958.285.39.496.851.641 1.348.07.496.105.996.07 1.563h-5.15c0 .58.21 1.11.496 1.396m2.24-3.732c-.25-.25-.642-.391-1.103-.391-.32 0-.566.07-.781.176s-.356.25-.496.39a.96.96 0 0 0-.25.497c-.036.175-.07.32-.07.46h3.196c-.07-.526-.25-.882-.497-1.132zm-3.127-3.728h3.978v.957h-3.978z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </section>
