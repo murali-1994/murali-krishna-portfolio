@@ -8,7 +8,7 @@ const imageCount = 53;
 
 const images = Array.from({ length: imageCount }, (_, i) => ({
     id: i + 1,
-    src: `../assets/sketches/${i + 1}.png`,
+    src: `/assets/sketches/${i + 1}.png`,
     alt: `Gallery image ${i + 1}`
 }));
 

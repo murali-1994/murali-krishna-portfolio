@@ -14,9 +14,17 @@
     --font-size-values: 18px;
     --font-size-availability-title: 20px;
 
+    /* Theme Colors (for dark mode matching portfolio) */
+    --bg-primary: #0b011d;
+    --bg-secondary: #160a2c;
+    --text-primary: #ffffff;
+    --text-muted: #74698c;
+    --accent: #7e3dff;
+    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+
     /* Colors */
-    --color-text-dark: #111111;
-    --color-text-gray: #888888;
+    --color-text-dark: #ffffff;
+    --color-text-gray: #74698c;
     --color-text-light: #c0c0c0;
     /* myNILpay light text in title */
     --color-bg-white: #ffffff;
@@ -24,7 +32,7 @@
     /* Hero placeholder color */
     --color-bg-light-box: #f4f4f5;
     /* Availability section background */
-    --color-line: #d1d1d1;
+    --color-line: rgba(255, 255, 255, 0.15);
 }
 
 /* Reset & Base */
