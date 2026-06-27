@@ -2808,6 +2808,15 @@
                                 <div class="popup-group"><a href="#" class="popup-toggle w-inline-block"></a>
                                     <div class="popup-wrapper popup-wrapper-1 tyvm">
                                         <div style="opacity:0" class="popup-inner">
+                                            <a href="#" class="popup-close-3 w-inline-block">
+                                                <div class="popup-close-icon w-embed"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                                        viewBox="0 0 14 14">
+                                                        <path
+                                                            d="m1.61.21.1.08L7 5.6l5.3-5.3a1 1 0 0 1 1.49 1.32l-.08.1L8.4 7l5.3 5.3a1 1 0 0 1-1.32 1.49l-.1-.08L7 8.4l-5.3 5.3a1 1 0 0 1-1.49-1.32l.08-.1L5.6 7 .29 1.7A1 1 0 0 1 1.61.22Z"
+                                                            fill="currentColor" fill-rule="nonzero" />
+                                                    </svg></div>
+                                            </a>
                                             <div style="-webkit-transform:translate3d(0, 3em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 3em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 3em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 3em, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
                                                 class="popup-content-wrapper">
                                                 <div class="popup-content">
@@ -2917,6 +2926,37 @@
                                     .popup-wrapper.tyvm .popup-content-wrapper {
                                         max-width: 1100px;
                                         width: 90vw;
+                                    }
+
+                                    .popup-wrapper.tyvm .popup-content {
+                                        background: radial-gradient(33.82% 46.83% at 50% 0%, rgba(126, 61, 255, 0.08) 0%, rgba(126, 61, 255, 0) 100%), #0B011D;
+                                        color: #ffffff;
+                                        border: 1px solid rgba(255, 255, 255, 0.1);
+                                    }
+
+                                    .popup-wrapper.tyvm .popup-content p {
+                                        color: #ffffff;
+                                    }
+
+                                    .popup-wrapper.tyvm .popup-close-3 {
+                                        display: flex !important;
+                                        background-color: rgba(255, 255, 255, 0.1);
+                                        color: #ffffff;
+                                        transition: background-color 0.3s ease;
+                                    }
+
+                                    .popup-wrapper.tyvm .popup-close-3:hover {
+                                        background-color: rgba(255, 255, 255, 0.2);
+                                    }
+
+                                    .nav {
+                                        transition: opacity 0.3s ease, transform 0.3s ease !important;
+                                    }
+
+                                    body.tyvm-open .nav {
+                                        opacity: 0 !important;
+                                        pointer-events: none !important;
+                                        transform: translate3d(0, 20px, 0) !important;
                                     }
 
                                     .letter {
@@ -4103,11 +4143,11 @@
                                                 alt="" class="thumbnail-img" /></div>
                                         <div class="project-name-div">
                                             <div class="project-name-top">
-                                                <h5 class="project-title">Freehand Sketching</h5>
+                                                <h5 class="project-title">My Sketchbook</h5>
 
                                             </div>
-                                            <p class="project-description">Programming a series of high-end, performant
-                                                websites for the world&#x27;s most-followed productivity expert.</p>
+                                            <p class="project-description">Capturing ideas on paper through observation,
+                                                creativity, and freehand sketching.</p>
                                         </div>
                                     </div>
 
@@ -4126,9 +4166,8 @@
                                                 <h5 class="project-title">My Photography Journey</h5>
 
                                             </div>
-                                            <p class="project-description">Building a colourful, dynamic landing page
-                                                for
-                                                one of the most sought-after live courses online.</p>
+                                            <p class="project-description">Exploring the world through photography,
+                                                capturing moments, perspectives, and visual stories.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -5819,11 +5858,15 @@
         // Adds overflow hidden to the body prevent page scrolling when popup is open
         $('.popup-toggle').on('click', function () {
             $('body').addClass('overflow-hidden');
+            if ($(this).siblings('.popup-wrapper').hasClass('tyvm')) {
+                $('body').addClass('tyvm-open');
+            }
         });
 
         // Removes overflow hidden from body if popup is closed
-        $('.popup-close, .popup-background').on('click', function () {
+        $('.popup-close, .popup-close-3, .popup-background').on('click', function () {
             $('body').removeClass('overflow-hidden');
+            $('body').removeClass('tyvm-open');
         });
 
         // Stops YouTube / Vimeo Video from playing if Popup is closed
