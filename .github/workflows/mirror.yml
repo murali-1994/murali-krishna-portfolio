@@ -2,7 +2,7 @@ name: Mirror to Client Repo
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] 
 
 jobs:
   mirror:
@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          
       - name: Push to Client
         run: |
+          # We embed the token using standard git basic auth syntax
           git remote add client https://x-access-token:${{ secrets.CLIENT_GITHUB_TOKEN }}@github.com/murali-1994/murali-krishna-portfolio.git
           git push --force --prune client refs/remotes/origin/*:refs/heads/*
