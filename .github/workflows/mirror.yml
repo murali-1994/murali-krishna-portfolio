@@ -1,3 +1,33 @@
+# name: Mirror to Client Repo
+
+# on:
+#   push:
+#     branches: [ main ]
+
+# jobs:
+#   mirror:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+#           persist-credentials: false # <-- CRITICAL: Stops GitHub from overriding your token
+
+#       - name: Push to Client Repo
+#         env:
+#           TOKEN: ${{ secrets.CLIENT_GITHUB_TOKEN }}
+#         run: |
+#           # 1. Clean up any previous git configurations to prevent caching issues
+#           git remote rm client || true
+          
+#           # 2. Add the remote using the token correctly embedded in the URL structure
+#           git remote add client https://murali-1994:${TOKEN}@github.com/murali-1994/murali-krishna-portfolio.git
+          
+#           # 3. Force push the main branch to their repository
+#           git push --force client main
+
+
 name: Mirror to Client Repo
 
 on:
@@ -6,23 +36,19 @@ on:
 
 jobs:
   mirror:
+    if: github.repository_owner == 'PrayagN' 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false # <-- CRITICAL: Stops GitHub from overriding your token
+          persist-credentials: false
 
       - name: Push to Client Repo
         env:
           TOKEN: ${{ secrets.CLIENT_GITHUB_TOKEN }}
         run: |
-          # 1. Clean up any previous git configurations to prevent caching issues
           git remote rm client || true
-          
-          # 2. Add the remote using the token correctly embedded in the URL structure
           git remote add client https://murali-1994:${TOKEN}@github.com/murali-1994/murali-krishna-portfolio.git
-          
-          # 3. Force push the main branch to their repository
           git push --force client main
