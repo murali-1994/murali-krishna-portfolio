@@ -2,18 +2,27 @@ name: Mirror to Client Repo
 
 on:
   push:
-    branches: [ main ] 
+    branches: [ main ]
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
-      - name: Push to Client
+          persist-credentials: false # <-- CRITICAL: Stops GitHub from overriding your token
+
+      - name: Push to Client Repo
+        env:
+          TOKEN: ${{ secrets.CLIENT_GITHUB_TOKEN }}
         run: |
-          # We embed the token using standard git basic auth syntax
-          git remote add client https://x-access-token:${{ secrets.CLIENT_GITHUB_TOKEN }}@github.com/murali-1994/murali-krishna-portfolio.git
-          git push --force --prune client refs/remotes/origin/*:refs/heads/*
+          # 1. Clean up any previous git configurations to prevent caching issues
+          git remote rm client || true
+          
+          # 2. Add the remote using the token correctly embedded in the URL structure
+          git remote add client https://murali-1994:${TOKEN}@github.com/murali-1994/murali-krishna-portfolio.git
+          
+          # 3. Force push the main branch to their repository
+          git push --force client main
