@@ -1,0 +1,17 @@
+name: Mirror to Client Repo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to Client
+        run: |
+          git remote add client https://x-access-token:${{ secrets.CLIENT_GITHUB_TOKEN }}@github.com/murali-1994/murali-krishna-portfolio.git
+          git push --force --prune client refs/remotes/origin/*:refs/heads/*
